@@ -28,14 +28,6 @@ namespace Website.Api.Controllers
             return Ok(await _postManager.GetByIdAsync(id));
         }
 
-
-        [HttpGet("permalink/{permalink}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetByPermalinkAsync(string permalink)
-        {
-            return Ok(await _postManager.GetByPermalinkAsync(permalink));
-        }
-
         [HttpGet]
         [ServiceFilter(typeof(AdminRoleFilter))]
         public async Task<IActionResult> GetListAsync([FromQuery] BasePageInputModel input)
@@ -48,7 +40,7 @@ namespace Website.Api.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] PostInputModel input)
         {
             await _postManager.CreateAsync(input, User.Claims.GetUserId());
-            return Ok();
+            return Ok(true);
         }
 
         [HttpPut]
@@ -56,7 +48,7 @@ namespace Website.Api.Controllers
         public async Task<IActionResult> UpdateAsync([FromBody] PostInputModel input)
         {
             await _postManager.UpdateAsync(input, User.Claims.GetUserId());
-            return Ok();
+            return Ok(true);
         }
 
         [HttpPut("{id}")]
@@ -64,7 +56,7 @@ namespace Website.Api.Controllers
         public async Task<IActionResult> UpdateAsync(int id, [FromBody] PostInputModel input)
         {
             await _postManager.UpdateAsync(input, User.Claims.GetUserId());
-            return Ok();
+            return Ok(true);
         }
 
         [HttpDelete("{id}")]
@@ -72,7 +64,7 @@ namespace Website.Api.Controllers
         public async Task<IActionResult> DeleteAsync(int id)
         {
             await _postManager.DeleteAsync(id);
-            return Ok();
+            return Ok(true);
         }
     }
 }
