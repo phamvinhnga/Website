@@ -1,0 +1,141 @@
+<div 
+    *ngIf="form" 
+    [formGroup]="form" 
+    id="post-crud">
+    <div class="d-flex margin-b-20">
+        <h5 class="d-block flex-fill">
+            <i class="pi pi-fw pi-home"></i>
+            {{ title }}
+        </h5>
+        <div>
+            <button 
+                [routerLink]="'../../post'"
+                pButton type="button" 
+                label="Quay lại" 
+                icon="pi pi-arrow-left" 
+                class="p-button-sm p-button-secondary margin-l-5 float-end">
+            </button>
+            <button 
+                (click)="save()"
+                [disabled]="form.invalid"
+                pButton type="button" 
+                label="Lưu bài viết" 
+                icon="pi pi-save" 
+                class="p-button-sm p-button-success float-end">
+            </button>
+        </div>
+    </div>
+    <div [hidden]="displayBasic" class="row bg-white padding-t-20">
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Tiêu dề <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('title')}" 
+                    (input)="onChangeTitle($event)" 
+                    formControlName="title" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+                <small *ngIf="formValidation('title')" class="p-error block d-block">Tiêu đề không được để trống</small>
+            </div>
+            <div class="field w-100 margin-b-20">
+                <h6>Liên kết bài viết <span [ngStyle]="{color:'var(--red-300)'}">(*)</span> :
+                    <a target="_blank" [href]="permalinkRoot + form.get('permalink')?.value" class="margin-l-5">
+                        <i>{{ permalinkRoot }}{{ form.get('permalink')?.value }}</i>
+                    </a>
+                </h6>  
+        
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('permalink')}" 
+                    formControlName="permalink"
+                    (input)="onChangePermalink($event)" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+            </div>
+            <div class="field w-100 margin-b-20">
+                <div class="d-flex margin-b-5">
+                    <h6 class="flex-fill margin-b-0 line-height-38">Nội dung</h6>
+                    <button 
+                        (click)="showBasicDialog()"
+                        pButton type="button" 
+                        label="Xem nội dung" 
+                        icon="pi pi-eye" 
+                        class="p-button-sm p-button-help">
+                    </button>
+                </div>
+                <div formControlName="content" [ngxSummernote]="summernoteOptions"></div>
+            </div>
+            <div class="field margin-b-20">
+                <h6>Ảnh đại diện</h6>
+                <div>
+                    <a 
+                        *ngIf="listFileImage[0]"
+                        [href]="listFileImage[0]?.url" 
+                        class="example-image-link" 
+                        data-lightbox="example-set">
+                        <img width="250px" [src]="listFileImage[0]?.url" [alt]="listFileImage[0]?.name">
+                    </a>
+                    <a 
+                        *ngIf="!listFileImage[0]"
+                        (click)="thumnailInputTmp.click()"
+                        class="example-image-link">
+                        <img width="250px" [src]="'assets/demo/images/avatar/placeholder.png'">
+                    </a>
+
+                    <input #thumnailInputTmp type="file" (change)="onRemoveFileImage(); onHandleUploadImage($event)" class="d-none"/>
+                    <div class="margin-t-10">
+                        <button 
+                            (click)="thumnailInputTmp.click()"
+                            pButton type="button" 
+                            label="Tải ảnh" 
+                            icon="pi pi-upload" 
+                            class="p-button-sm p-button-primary">
+                        </button>
+                        <button 
+                            (click)="onRemoveFileImage()"
+                            pButton type="button" 
+                            label="Xóa ảnh" 
+                            icon="pi pi-times" 
+                            class="p-button-sm p-button-danger margin-l-5">
+                        </button>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+    </div>
+
+    <div [hidden]="displayBasic" class="row bg-white margin-t-20 padding-t-20">
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Tối ưu hóa tìm kiếm</h6>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>SEO Tiêu dề</h6>
+                <input 
+                    formControlName="metaTitle" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>SEO mô tả</h6>
+                <textarea 
+                    formControlName="metaDescription" 
+                    class="w-100 p-inputtext" 
+                    pInputText >
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="displayBasic" [style]="{width: '100vw', height: '100vh'}">
+        <div class="container">
+            <div [ngxSummernoteView]="form?.get('content')?.value"></div>
+        </div>
+    </p-dialog>
+    
+</div>
+

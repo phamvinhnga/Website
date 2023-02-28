@@ -1,0 +1,13 @@
+:host::ng-deep {
+    #post-crud{
+        padding: {
+            top: 30px;
+            bottom: 25px;
+        };
+
+        .p-dialog-mask{
+            width: unset !important;
+            height: unset !important;
+        }
+    }
+}

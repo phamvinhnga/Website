@@ -1,0 +1,238 @@
+@for $i from 0 through 1200 {
+
+    .top--#{$i} {
+        top: -#{$i}px !important;
+    }
+
+    .left--#{$i} {
+        left: -#{$i}px !important;
+    }
+    .right--#{$i} {
+        right: -#{$i}px !important;
+    }
+    .bottom--#{$i} {
+        bottom: -#{$i}px !important;
+    }
+
+    // .top-p-#{$i} {
+    //     top: #{$i}% !important;
+    // }
+    // .bottom-p-#{$i} {
+    //     bottom: #{$i}% !important;
+    // }
+    // .right-p-#{$i} {
+    //     right: #{$i}% !important;
+    // }
+    // .left-p-#{$i} {
+    //     left: #{$i}% !important;
+    // }
+
+    // .width-p-#{$i} {
+    //     width: #{$i}% !important;
+    // }
+
+    // .width-s-#{$i} {
+    //     width: #{$i}vw !important;
+    // }
+
+    // .height-p-#{$i} {
+    //     height: #{$i}% !important;
+    // }
+
+    .height-s-#{$i} {
+        height: #{$i}vh !important;
+    }
+
+    .width-#{$i} {
+        width: #{$i}px !important;
+    }
+
+    .height-#{$i} {
+        height: #{$i}px !important;
+    }
+
+    .min-width-#{$i} {
+        min-width: #{$i}px !important;
+    }
+
+    .min-height-#{$i} {
+        min-height: #{$i}px !important;
+    }
+
+    .max-width-#{$i} {
+        max-width: #{$i}px !important;
+    }
+
+    .max-height-#{$i} {
+        max-height: #{$i}px !important;
+    }
+
+    .padding-#{$i} {
+        padding: #{$i}px !important;
+    }
+
+    .padding-lr-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+    }
+
+    .padding-tb-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+    }
+
+    .padding-l-#{$i} {
+        padding-left: #{$i}px !important;
+    }
+
+    .padding-r-#{$i} {
+        padding-right: #{$i}px !important;
+    }
+
+    .padding-t-#{$i} {
+        padding-top: #{$i}px !important;
+    }
+
+    .padding-b-#{$i} {
+        padding-bottom: #{$i}px !important;
+    }
+
+
+    .padding--#{$i} {
+        padding: -#{$i}px !important;
+    }
+
+    .padding-lr--#{$i} {
+        padding-left: -#{$i}px !important;
+        padding-right: -#{$i}px !important;
+    }
+
+    .padding-tb--#{$i} {
+        padding-top: -#{$i}px !important;
+        padding-bottom: -#{$i}px !important;
+    }
+
+    .padding-l--#{$i} {
+        padding-left: -#{$i}px !important;
+    }
+
+    .padding-r--#{$i} {
+        padding-right: -#{$i}px !important;
+    }
+
+    .padding-t--#{$i} {
+        padding-top: -#{$i}px !important;
+    }
+
+    .padding-b--#{$i} {
+        padding-bottom: -#{$i}px !important;
+    }
+
+    .px-#{$i} {
+      padding: 0 #{$i}px;
+    }
+
+    .py-#{$i} {
+      padding: #{$i}px 0;
+    }
+
+    .margin-#{$i} {
+        margin: #{$i}px !important;
+    }
+
+    .margin-lr-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+    }
+
+    .margin-tb-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+    }
+
+    .margin-l-#{$i} {
+        margin-left: #{$i}px !important;
+    }
+
+    .margin-r-#{$i} {
+        margin-right: #{$i}px !important;
+    }
+
+    .margin-t-#{$i} {
+        margin-top: #{$i}px !important;
+    }
+
+    .margin-b-#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+
+
+    .margin--#{$i} {
+        margin: -#{$i}px !important;
+    }
+
+    .margin-lr--#{$i} {
+        margin-left: -#{$i}px !important;
+        margin-right: -#{$i}px !important;
+    }
+
+    .margin-tb--#{$i} {
+        margin-top: -#{$i}px !important;
+        margin-bottom: -#{$i}px !important;
+    }
+
+    .margin-l--#{$i} {
+        margin-left: -#{$i}px !important;
+    }
+
+    .margin-r--#{$i} {
+        margin-right: -#{$i}px !important;
+    }
+
+    .margin-t--#{$i} {
+        margin-top: -#{$i}px !important;
+    }
+
+    .margin-b--#{$i} {
+        margin-bottom: -#{$i}px !important;
+    }
+
+
+    .font-size-#{$i} {
+        font-size: #{$i}px !important;
+    }
+
+    .z-index-#{$i} {
+        z-index: $i !important;
+    }
+
+    .line-height-#{$i} {
+        line-height: #{$i}px !important;
+    }
+
+    .top-#{$i} {
+        top: #{$i}px !important;
+    }
+    .right-#{$i} {
+        right: #{$i}px !important;
+    }
+    .bottom-#{$i} {
+        bottom: #{$i}px !important;
+    }
+    .left-#{$i} {
+        left: #{$i}px !important;
+    }
+}
+
+.left-unset{
+    left: unset !important;
+}
+.right-unset{
+    right: unset !important;
+}
+.top-unset{
+    top: unset !important;
+}
+.bottom-unset{
+    bottom: unset !important;
+}
