@@ -29,7 +29,7 @@ import { AuthService } from './module/shared/service/auth.service';
       useClass: JwtInterceptor, 
       multi: true 
     },
-    { provide: LocationStrategy, useClass: HashLocationStrategy}
+    // { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
