@@ -9,5 +9,31 @@
             width: unset !important;
             height: unset !important;
         }
+
+        .widget-title {
+            color: #1f64a0 !important;
+        }
+
+        .existed-seo-meta {
+            .page-title-seo {
+                color: #1a0dab;
+                display: block;
+                font-size: 18px;
+                line-height: 21px;
+                margin-bottom: 2px;
+                min-height: 21px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+    
+            p {
+                word-wrap: break-word;
+                color: #006621;
+                display: block;
+                font-size: 13px;
+                line-height: 16px;
+                margin-bottom: 2px;
+            }
+        }
     }
 }

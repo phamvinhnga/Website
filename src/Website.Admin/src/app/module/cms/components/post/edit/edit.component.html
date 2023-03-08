@@ -104,15 +104,34 @@
         </div>
     </div>
 
-    <div [hidden]="displayBasic" class="row bg-white margin-t-20 padding-t-20">
+    <div [hidden]="displayBasic" class="row bg-white margin-t-20 padding-t-20 padding-b-15">
         <div class="col-12">
-            <div class="field w-100 margin-b-20">
-                <h6>Tối ưu hóa tìm kiếm</h6>
+            <div class="field w-100 margin-b-13">
+                <h6 class="widget-title">Tối ưu hóa tìm kiếm</h6>
+            </div>
+            <div class="existed-seo-meta">
+                <span *ngIf="!form.get('metaTitle')?.value || form.get('metaTitle')?.value == ''" class="page-title-seo">
+                    {{ form.get('title')?.value }}
+                </span>
+                <span *ngIf="form.get('metaTitle')?.value && form.get('metaTitle')?.value != ''" class="page-title-seo">
+                    {{ form.get('metaTitle')?.value }}
+                </span>
+                <div class="page-url-seo ws-nm">
+                    <p>{{ permalinkRoot }}{{ form.get('permalink')?.value }}</p>
+                </div>
+                <div class="ws-nm">
+                    <span class="page-description-seo">
+                        {{ form.get('metaDescription')?.value }}
+                    </span>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div [hidden]="displayBasic" class="row bg-white margin-t-15 padding-t-20">
         <div class="col-12">
             <div class="field w-100 margin-b-20">
-                <h6>SEO Tiêu dề</h6>
+                <h6 class="widget-title">SEO Tiêu dề</h6>
                 <input 
                     formControlName="metaTitle" 
                     class="w-100 p-inputtext" 
@@ -121,10 +140,10 @@
         </div>
         <div class="col-12">
             <div class="field w-100 margin-b-20">
-                <h6>SEO mô tả</h6>
+                <h6 class="widget-title">SEO mô tả</h6>
                 <textarea 
                     formControlName="metaDescription" 
-                    class="w-100 p-inputtext" 
+                    class="w-100 p-inputtext height-120" 
                     pInputText >
                 </textarea>
             </div>

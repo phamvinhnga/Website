@@ -9,15 +9,13 @@ import { AppComponent } from './app.component';
 import { JwtInterceptor } from './Interceptor/jwt.interceptor';
 import { LoginModule } from './module/login/login.module';
 import { AuthService } from './module/shared/service/auth.service';
-import { RobotComponent } from './robots.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RobotComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,

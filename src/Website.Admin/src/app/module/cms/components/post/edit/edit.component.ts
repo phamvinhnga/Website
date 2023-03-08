@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
-import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
 import { MessageService } from 'primeng/api';
 import { Constants } from 'src/app/module/shared/common/constants';
 import { ConvertViToEn } from 'src/app/module/shared/common/function';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
 import { FileModel } from 'src/app/module/shared/model/file.model';
-import { PostInputModel, PostOutputModel } from 'src/app/module/shared/model/post.model';
+import { PostOutputModel } from 'src/app/module/shared/model/post.model';
 import { PostService } from 'src/app/module/shared/service/post.service';
 
 @Component({
