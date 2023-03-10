@@ -1,7 +1,14 @@
+using Google.Protobuf;
+using Serilog;
+using Serilog.Events;
 using Website.Api.Services.ServiceBuilders;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
 
 // Add services to the container.
 builder.Services.UseSwaggerServiceBuilder(configuration);

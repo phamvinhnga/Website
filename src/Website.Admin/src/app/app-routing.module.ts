@@ -5,21 +5,19 @@ import { LoginComponent } from './module/login/login.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent,
+  },
+  {
     path: 'cms',
     component: AppComponent,
     loadChildren: () =>
       import('./module/cms/cms.module').then((m) => m.CmsModule),
   },
-  {
-    path: 'dang-nhap',
-    component: LoginComponent,
-  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

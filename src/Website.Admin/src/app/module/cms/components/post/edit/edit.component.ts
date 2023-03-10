@@ -9,6 +9,8 @@ import { BaseComponent } from 'src/app/module/shared/model/base.component.model'
 import { FileModel } from 'src/app/module/shared/model/file.model';
 import { PostOutputModel } from 'src/app/module/shared/model/post.model';
 import { PostService } from 'src/app/module/shared/service/post.service';
+import { environment } from 'src/environments/environment';
+const _websiteUrl = `${environment.baseUrl}/`;
 
 @Component({
   selector: 'app-edit',
@@ -18,7 +20,7 @@ import { PostService } from 'src/app/module/shared/service/post.service';
 export class PostEditComponent extends BaseComponent implements OnInit {
 
   displayBasic = false;
-  permalinkRoot:string = `${window.location.origin}${Constants.ABOUT_US_URL}`;
+  permalinkRoot:string = `${_websiteUrl}${Constants.ABOUT_US_URL}`;
   constructor(
     private readonly postService:PostService,
     private readonly router:Router,
