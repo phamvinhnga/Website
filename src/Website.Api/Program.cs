@@ -1,15 +1,10 @@
-using Google.Protobuf;
-using Serilog;
-using Serilog.Events;
+using System.Diagnostics;
 using Website.Api.Services.ServiceBuilders;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(configuration)
-    .CreateLogger();
-
+SerilogServiceBuilder.CreateBuilder(configuration, builder.Environment);
 // Add services to the container.
 builder.Services.UseSwaggerServiceBuilder(configuration);
 builder.Services.UseSqlServiceBuilder(configuration);
@@ -18,12 +13,12 @@ builder.Services.UseAutoMapperServiceBuilder(configuration);
 builder.Services.UseInjectionServiceBuilder(configuration);
 builder.Services.UseWebServiceBuilder(configuration);
 builder.Services.UseAuthServiceBuilder(configuration);
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
+    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
     app.UseSwaggerApplicationBuilder(configuration);
 }
 app.UseCors(x => x
@@ -35,5 +30,4 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

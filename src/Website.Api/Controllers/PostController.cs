@@ -4,6 +4,7 @@ using Website.Entity.Model;
 using Website.Shared.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Website.Api.Controllers
 {

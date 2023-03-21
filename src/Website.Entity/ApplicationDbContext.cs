@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 
 namespace Website.Entity
 {
@@ -33,6 +34,7 @@ namespace Website.Entity
                                               database);
             if (!optionsBuilder.IsConfigured)
             {
+                Log.Debug("Begin connecting to database");
                 optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(version)),
                     options => options.EnableRetryOnFailure(
                         maxRetryCount: 5,
@@ -40,6 +42,10 @@ namespace Website.Entity
                         errorNumbersToAdd: null
                     )
                 );
+            }
+            else
+            {
+                Log.Debug("Configured accsess to the database");
             }
         }
 

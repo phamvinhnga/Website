@@ -1,6 +1,7 @@
 ﻿using Website.Entity;
 using Website.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Website.Api.Services.ServiceBuilders
 {
@@ -19,6 +20,7 @@ namespace Website.Api.Services.ServiceBuilders
             using var serviceScope = services.BuildServiceProvider().CreateScope();
             using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
             {
+                Log.Debug("Run migraiton");
                 context?.Database.Migrate();
             }
         }
