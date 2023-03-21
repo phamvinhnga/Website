@@ -20,6 +20,6 @@
 	<ProjectReference Include="..\Website.Shared\Website.Shared.csproj" />
 </ItemGroup>
 <ItemGroup>
-  <Folder Include="App_Data\logs\" />
+  <Folder Include="App_Data\" />
 </ItemGroup>
 </Project>
