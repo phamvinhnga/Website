@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Website.Biz.Managers.Interfaces;
 using Website.Entity;
 using Website.Entity.Repositories.Interfaces;
 using Website.Models;
@@ -29,7 +26,10 @@ namespace Website.Controllers
         public async Task<IActionResult> Index()
         {
             var p = await _postRepository.GetByIdAsync(1);
-            ViewBag.Co = p.Content;
+            ViewBag.MetaTitle = p.MetaTitle;
+            ViewBag.Permalink = p.Permalink;
+            ViewBag.MetaDescription = p.MetaDescription;
+            ViewBag.Content = p.Content;
             return View(p);
         }
 

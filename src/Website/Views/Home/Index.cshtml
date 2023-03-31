@@ -1,12 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Html;
-@{
-    ViewData["Title"] = "Home Pagexxxxxxxxxxxxx";
-}
 <div class="advisor_section_2 layout_padding">
     <div class="container">
         <div class="box_section">
             <div class="row">
-            @(new HtmlString(ViewData["Co"].ToString()))
+            @(new HtmlString(ViewData["Content"].ToString()))
             </div>
         </div>
     </div>

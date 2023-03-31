@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using ServiceStack;
 using Website.Api.Services.ServiceBuilders;
 using Website.Biz.AutoMapper;
 
