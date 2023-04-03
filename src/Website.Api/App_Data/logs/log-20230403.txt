@@ -1,0 +1,4 @@
+2023-04-03 13:34:17.536 +07:00 [DBG] Run migraiton
+2023-04-03 13:34:17.621 +07:00 [DBG] Begin connecting to database
+2023-04-03 13:34:59.837 +07:00 [DBG] Run migraiton
+2023-04-03 13:34:59.899 +07:00 [DBG] Begin connecting to database

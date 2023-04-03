@@ -16,11 +16,12 @@ builder.Services.UseAuthServiceBuilder(configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
-{
-    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-    app.UseSwaggerApplicationBuilder(configuration);
-}
+//if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+//{
+//    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+//    app.UseSwaggerApplicationBuilder(configuration);
+//}
+app.UseSwaggerApplicationBuilder(configuration);
 app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
