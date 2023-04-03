@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Entity", "src\Websi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Shared", "src\Website.Shared\Website.Shared.csproj", "{990401BF-D508-4984-A276-08764BAF01ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.Admin", "src\Website.Admin\Website.Admin.csproj", "{EDD57AB1-4FBF-4772-83BF-F5E88E0986BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.Admin", "src\Website.Admin\Website.Admin.csproj", "{EDD57AB1-4FBF-4772-83BF-F5E88E0986BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

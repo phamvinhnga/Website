@@ -1,10 +1,12 @@
-﻿@using Microsoft.AspNetCore.Html;
-<div class="advisor_section_2 layout_padding">
-    <div class="container">
-        <div class="box_section">
-            <div class="row">
-            @(new HtmlString(ViewData["Content"].ToString()))
-            </div>
-        </div>
-    </div>
-</div>
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("Partials/Header")
+@Html.Partial("Partials/Facilities")
+@Html.Partial( "~/Views/Shared/_ClassRoom.cshtml")
+@Html.Partial("Partials/AboutUs")
+@Html.Partial("Partials/BookSeat")
+@Html.Partial("Partials/MeetOurTeacher")
+@Html.Partial("Partials/Testimonial")
+@Html.Partial( "~/Views/Shared/_Blog.cshtml")

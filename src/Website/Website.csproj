@@ -14,5 +14,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Website.Biz\Website.Biz.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Views\ClassRoom\" />
+  </ItemGroup>
 
 </Project>
