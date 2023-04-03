@@ -27,7 +27,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Quản lý bài viết',
                 items: [
-                    { label: 'Bài viết', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
+                    { label: 'Bài viết về chúng tôi', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post/ve-chung-toi'] },
                 ]
             },
             {

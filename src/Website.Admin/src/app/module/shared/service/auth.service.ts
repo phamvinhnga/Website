@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthModel, CurrentUserOutputModel, UserSignInOutputModel } from '../model/auth.model';
 
-let _prefix = `${environment.baseUrl}/api`;
+let _prefix = `${environment.coreServerURL}/api`;
 
 @Injectable({
   providedIn: 'root'

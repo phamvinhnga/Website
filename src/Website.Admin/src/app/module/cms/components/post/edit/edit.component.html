@@ -9,7 +9,7 @@
         </h5>
         <div>
             <button 
-                [routerLink]="'../../post'"
+                [routerLink]="'../../../post/' + typePost"
                 pButton type="button" 
                 label="Quay lại" 
                 icon="pi pi-arrow-left" 
@@ -39,8 +39,8 @@
             </div>
             <div class="field w-100 margin-b-20">
                 <h6>Liên kết bài viết <span [ngStyle]="{color:'var(--red-300)'}">(*)</span> :
-                    <a target="_blank" [href]="permalinkRoot + form.get('permalink')?.value" class="margin-l-5">
-                        <i>{{ permalinkRoot }}{{ form.get('permalink')?.value }}</i>
+                    <a target="_blank" [href]="form.get('permalink')?.value" class="margin-l-5">
+                        <i>{{ form.get('permalink')?.value }}</i>
                     </a>
                 </h6>  
         
@@ -117,7 +117,7 @@
                     {{ form.get('metaTitle')?.value }}
                 </span>
                 <div class="page-url-seo ws-nm">
-                    <p>{{ permalinkRoot }}{{ form.get('permalink')?.value }}</p>
+                    <p>{{ form.get('permalink')?.value }}</p>
                 </div>
                 <div class="ws-nm">
                     <span class="page-description-seo">

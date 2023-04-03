@@ -32,7 +32,7 @@
                     placeholder="Tìm kiếm bài viết">         
             </span>
             <button 
-                [routerLink]="'./0'"
+                [routerLink]="'./' + typePost + '/0'"
                 pButton type="button" 
                 label="Thêm mới" 
                 icon="pi pi-plus" 
@@ -60,7 +60,7 @@
                 <td style="max-width:200px">{{ item.createDate | date: 'dd-MM-yyyy'}} lúc {{ item.createDate | date: 'hh:mm'}}</td>
                 <td style="max-width:120px" class="justify-content-center">
                     <button 
-                        [routerLink]="'./' + item.id"
+                        [routerLink]="item.id"
                         pButton 
                         pRipple 
                         icon="pi pi-pencil" 

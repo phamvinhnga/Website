@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { BasePageInputModel, BasePageOutputModel } from '../model/base.model';
 import { PostInputModel, PostOutputModel } from '../model/post.model';
 
-const _prefix = `${environment.baseUrl}/api`;
+const _prefix = `${environment.coreServerURL}/api`;
 
 @Injectable({
   providedIn: 'root'

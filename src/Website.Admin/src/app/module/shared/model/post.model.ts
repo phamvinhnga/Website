@@ -3,6 +3,7 @@ import { FileModel } from "./file.model";
 export class PostInputModel implements IPostInputModel {
   id:number | undefined;
   title:string | undefined;
+  type:string | undefined;
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
@@ -11,6 +12,7 @@ export class PostInputModel implements IPostInputModel {
       if (data) {
           this.id = data["id"];
           this.title = data["title"];
+          this.type = data["type"];
           this.content = data["content"];
           this.summary = data["v"];
           this.thumbnail = data["thumbnail"] ? FileModel.fromJS(data["thumbnail"]) : undefined;
@@ -28,6 +30,7 @@ export class PostInputModel implements IPostInputModel {
 export interface IPostInputModel{
   id:number | undefined;
   title:string | undefined;
+  type:string | undefined;
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
@@ -36,6 +39,7 @@ export interface IPostInputModel{
 export class PostOutputModel implements IPostOutputModel {
   id!:number;
   title:string | undefined;
+  type:string | undefined;
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
@@ -49,6 +53,7 @@ export class PostOutputModel implements IPostOutputModel {
       if (data) {
         this.id = data["id"];
         this.title = data["title"];
+        this.type = data["type"];
         this.content = data["content"];
         this.summary = data["summary"];
         this.permalink = data["permalink"];

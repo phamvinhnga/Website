@@ -10,11 +10,11 @@ const routes: Routes = [
     component: CmsComponent,
     children: [
       {
-        path: 'post',
+        path: 'post/:type',
         component: PostComponent,
       },
       {
-        path: 'post/:id',
+        path: 'post/:type/:id',
         component: PostEditComponent
       }
     ]

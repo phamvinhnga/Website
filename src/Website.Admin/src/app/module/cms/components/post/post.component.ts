@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService, Message } from 'primeng/api';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
 import { BasePageInputModel, BasePageOutputModel } from 'src/app/module/shared/model/base.model';
@@ -13,19 +14,22 @@ import { PostService } from 'src/app/module/shared/service/post.service';
 })
 export class PostComponent extends BaseComponent implements OnInit {
 
+  typePost:any;
   data!: BasePageOutputModel<PostOutputModel>;
   filterPage: BasePageInputModel = new BasePageInputModel();
   search:string = '';
   constructor(
-    private confirmationService:ConfirmationService,
-    private messageService:MessageService,
-    private postService:PostService,
+    private readonly confirmationService:ConfirmationService,
+    private readonly messageService:MessageService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly postService:PostService,
     private readonly meta:Meta
     ) {
     super();
   }
 
   ngOnInit() {
+    this.typePost = this.activatedRoute.snapshot.params['type'] || undefined;
     this.filterPage.maxCountResult = 9999;
     this.getList();
   }
