@@ -1,11 +1,13 @@
 using System.Diagnostics;
 using Website.Api.Services.ServiceBuilders;
+using Website.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 SerilogServiceBuilder.CreateBuilder(configuration, builder.Environment);
 // Add services to the container.
+builder.Services.Configure<DbContextConnectionOptions>(builder.Configuration.GetSection(DbContextConnectionOptions.Position));
 builder.Services.UseSwaggerServiceBuilder(configuration);
 builder.Services.UseSqlServiceBuilder(configuration);
 builder.Services.UseMigrationServiceBuilder(configuration);

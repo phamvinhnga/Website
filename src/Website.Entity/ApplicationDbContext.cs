@@ -4,38 +4,54 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using Microsoft.Extensions.Options;
+using System.Configuration;
 
 namespace Website.Entity
 {
+    public class DbContextConnectionOptions
+    {
+        public static string Position { get { return "ConnectionString"; } }
+        public string DefaultConnection { get; set; }
+        public string Server { get; set; }
+        public string UserId { get; set; }
+        public string Database { get; set; }
+        public string Password { get; set; }
+        public int Port { get; set; }
+        public string Version { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         protected readonly IConfiguration _configuration;
+        protected readonly DbContextConnectionOptions _dbContextConnectionOptions;
+        private readonly string _connectionString;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
+
+        public DbContextConnectionOptions positionOptions { get; private set; }
+
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> options,
+            IOptions<DbContextConnectionOptions> dbContextConnectionOptions,
+            IConfiguration configuration) : base(options)
         {
             _configuration = configuration;
+            _dbContextConnectionOptions = dbContextConnectionOptions.Value;
+            _connectionString = string.Format(_dbContextConnectionOptions.DefaultConnection,
+                                           _dbContextConnectionOptions.Server,
+                                           _dbContextConnectionOptions.Database,
+                                           _dbContextConnectionOptions.UserId,
+                                           _dbContextConnectionOptions.Password,
+                                           _dbContextConnectionOptions.Database);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string defaultConnection = _configuration.GetSection("ConnectionString:DefaultConnection").Value;
-            string server = _configuration.GetSection("ConnectionString:Server").Value;
-            string database = _configuration.GetSection("ConnectionString:Database").Value;
-            string UserId = _configuration.GetSection("ConnectionString:UserId").Value;
-            string password = _configuration.GetSection("ConnectionString:Password").Value;
-            string port = _configuration.GetSection("ConnectionString:Port").Value;
-            string version = _configuration.GetSection("ConnectionString:Version").Value;
-
-            var connectionString = string.Format(defaultConnection,
-                                              server,
-                                              database,
-                                              UserId,
-                                              password,
-                                              database);
+         
             if (!optionsBuilder.IsConfigured)
             {
                 Log.Debug("Begin connecting to database");
-                optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(version)),
+                optionsBuilder.UseMySql(_connectionString, new MySqlServerVersion(new Version(_dbContextConnectionOptions.Version)),
                     options => options.EnableRetryOnFailure(
                         maxRetryCount: 5,
                         maxRetryDelay: TimeSpan.FromSeconds(30),
