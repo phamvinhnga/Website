@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations;
+using Website.Entity.Model;
 
 namespace Website.Api.Controllers
 {
@@ -7,21 +9,19 @@ namespace Website.Api.Controllers
     [ApiController]
     public class FileController : ControllerBase
     {
-        private string _uploadDirecotroy = string.Empty;
-        private IConfiguration _configuration;
+        private readonly FileUploadSettingOptions _fileUploadOptions;
 
         public FileController(
-            IConfiguration configuration
+            IOptionsMonitor<FileUploadSettingOptions> fileUploadOptions
         )
         {
-            _configuration = configuration;
-            _uploadDirecotroy = _configuration.GetSection("Upload:Folder").Value;
+            _fileUploadOptions = fileUploadOptions.CurrentValue;
         }
 
         [HttpGet("{folder}/{id}")]
         public IActionResult GetFileAsync([Required] string folder, [Required] string id)
         {
-            var path = $"{_uploadDirecotroy}\\{folder}\\{id}";
+            var path = $"{_fileUploadOptions.Folder}\\{folder}\\{id}";
             if (System.IO.File.Exists(path))
             {
                 return File(System.IO.File.OpenRead(path), "application/octet-stream", Path.GetFileName(path));

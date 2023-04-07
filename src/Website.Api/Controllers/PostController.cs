@@ -5,6 +5,7 @@ using Website.Shared.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using Microsoft.Extensions.Options;
 
 namespace Website.Api.Controllers
 {

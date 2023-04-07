@@ -5,6 +5,7 @@ using Website.Entity.Model;
 using Website.Shared.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace Website.Api.Controllers
 {
@@ -63,7 +64,7 @@ namespace Website.Api.Controllers
             var refreshToken = Request.Headers["refresh-token"].ToString();
             if (string.IsNullOrEmpty(refreshToken))
             {
-                return BadRequest("RefreshT token is emty");
+                return BadRequest( new { message = "Refresh token is emty" });
             }
             var result = await _authManager.RefreshTokenAsync(refreshToken);
             return Ok(result);

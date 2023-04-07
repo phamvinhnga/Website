@@ -5,22 +5,19 @@ using System.Text.RegularExpressions;
 using static Website.Shared.Common.CoreEnum;
 using Website.Entity.Model;
 using Website.Shared.Extensions;
+using Microsoft.Extensions.Options;
 
 namespace Website.Biz.Managers
 {
     public class FileManager : IFileManager
     {
-        private string _uploadDirecotroy = string.Empty;
-        private string _url = string.Empty;
-        private IConfiguration _configuration;
+        private readonly FileUploadSettingOptions _fileUploadOptions;
 
         public FileManager(
-            IConfiguration configuration
+            IOptionsMonitor<FileUploadSettingOptions> fileUploadOptions
         ) 
         {
-            _configuration = configuration;
-            _uploadDirecotroy = _configuration.GetSection("Upload:Folder").Value;
-            _url = _configuration.GetSection("Upload:Url").Value;
+            _fileUploadOptions = fileUploadOptions.CurrentValue;
         }
 
         public string BuidlFileContent(string input, Folder folder)
@@ -29,12 +26,11 @@ namespace Website.Biz.Managers
             {
                 return null;
             }
-
             var reg = "\"data:([^;]*);base64,([^\"]*)\"";
             var matches = Regex.Matches(input, reg, RegexOptions.IgnoreCase);
             foreach (Match item in matches)
             {
-                var path = $"{_uploadDirecotroy}\\";
+                var path = $"{_fileUploadOptions.Url}\\";
                 var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
                 {
                     path += folder;
@@ -51,7 +47,7 @@ namespace Website.Biz.Managers
                 {
                     fs.Write(fileBytes, 0, fileBytes.Length);
                 }
-                input = input.Replace(item.Value, string.Format(_url, folder, id));
+                input = input.Replace(item.Value, string.Format(_fileUploadOptions.Url, folder, id));
             }
 
             return input;
@@ -77,7 +73,7 @@ namespace Website.Biz.Managers
                 result.Name = file.FileName;
             }
 
-            var path = $"{_uploadDirecotroy}\\";
+            var path = $"{_fileUploadOptions.Url}\\";
 
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
             {
@@ -96,7 +92,7 @@ namespace Website.Biz.Managers
                 file.CopyTo(strem);
             }
 
-            result.Url = string.Format(_url, folder, result.Id);
+            result.Url = string.Format(_fileUploadOptions.Url, folder, result.Id);
             result.Type = file.ContentType;
             return result;
         }
@@ -121,7 +117,7 @@ namespace Website.Biz.Managers
                 result.Name = file.Name;
             }
 
-            var path = $"{_uploadDirecotroy}\\";
+            var path = $"{_fileUploadOptions.Url}\\";
 
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
             {
@@ -140,7 +136,7 @@ namespace Website.Biz.Managers
             {
                 fs.Write(fileBytes, 0, fileBytes.Length);
             }
-            result.Url = string.Format(_url, folder, result.Id);
+            result.Url = string.Format(_fileUploadOptions.Url, folder, result.Id);
             return result;
         }
 

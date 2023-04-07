@@ -6,33 +6,22 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Microsoft.Extensions.Options;
 using System.Configuration;
+using Website.Entity.Model;
 
 namespace Website.Entity
 {
-    public class DbContextConnectionOptions
-    {
-        public static string Position { get { return "ConnectionString"; } }
-        public string DefaultConnection { get; set; }
-        public string Server { get; set; }
-        public string UserId { get; set; }
-        public string Database { get; set; }
-        public string Password { get; set; }
-        public int Port { get; set; }
-        public string Version { get; set; }
-    }
-
     public class ApplicationDbContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         protected readonly IConfiguration _configuration;
-        protected readonly DbContextConnectionOptions _dbContextConnectionOptions;
+        protected readonly DbContextConnectionSettingOptions _dbContextConnectionOptions;
         private readonly string _connectionString;
 
 
-        public DbContextConnectionOptions positionOptions { get; private set; }
+        public DbContextConnectionSettingOptions positionOptions { get; private set; }
 
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options,
-            IOptions<DbContextConnectionOptions> dbContextConnectionOptions,
+            IOptions<DbContextConnectionSettingOptions> dbContextConnectionOptions,
             IConfiguration configuration) : base(options)
         {
             _configuration = configuration;
