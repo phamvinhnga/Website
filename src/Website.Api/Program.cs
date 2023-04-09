@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using Website.Api.Services.ServiceBuilders;
 using Website.Entity;
@@ -8,8 +9,18 @@ var configuration = builder.Configuration;
 
 SerilogServiceBuilder.CreateBuilder(configuration, builder.Environment);
 // Add services to the container.
-builder.Services.Configure<DbContextConnectionSettingOptions>(builder.Configuration.GetSection(DbContextConnectionSettingOptions.Position));
-builder.Services.Configure<FileUploadSettingOptions>(builder.Configuration.GetSection(FileUploadSettingOptions.Position));
+builder.Services.AddOptions<DbContextConnectionSettingOptions>()
+    .Bind(builder.Configuration
+    .GetSection(DbContextConnectionSettingOptions.Position))
+    .ValidateDataAnnotations();
+builder.Services.AddOptions<FileUploadSettingOptions>()
+    .Bind(builder.Configuration
+    .GetSection(FileUploadSettingOptions.Position))
+    .ValidateDataAnnotations();
+builder.Services.AddOptions<JWTSettingOptions>()
+    .Bind(builder.Configuration
+    .GetSection(JWTSettingOptions.Position))
+    .ValidateDataAnnotations();
 builder.Services.UseSwaggerServiceBuilder(configuration);
 builder.Services.UseSqlServiceBuilder(configuration);
 builder.Services.UseMigrationServiceBuilder(configuration);

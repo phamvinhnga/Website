@@ -14,7 +14,6 @@ namespace Website.Entity
     {
         protected readonly IConfiguration _configuration;
         protected readonly DbContextConnectionSettingOptions _dbContextConnectionOptions;
-        private readonly string _connectionString;
 
 
         public DbContextConnectionSettingOptions positionOptions { get; private set; }
@@ -26,12 +25,6 @@ namespace Website.Entity
         {
             _configuration = configuration;
             _dbContextConnectionOptions = dbContextConnectionOptions.Value;
-            _connectionString = string.Format(_dbContextConnectionOptions.DefaultConnection,
-                                           _dbContextConnectionOptions.Server,
-                                           _dbContextConnectionOptions.Database,
-                                           _dbContextConnectionOptions.UserId,
-                                           _dbContextConnectionOptions.Password,
-                                           _dbContextConnectionOptions.Database);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,7 +33,7 @@ namespace Website.Entity
             if (!optionsBuilder.IsConfigured)
             {
                 Log.Debug("Begin connecting to database");
-                optionsBuilder.UseMySql(_connectionString, new MySqlServerVersion(new Version(_dbContextConnectionOptions.Version)),
+                optionsBuilder.UseMySql(_dbContextConnectionOptions.ConnectionString, new MySqlServerVersion(new Version(_dbContextConnectionOptions.Version)),
                     options => options.EnableRetryOnFailure(
                         maxRetryCount: 5,
                         maxRetryDelay: TimeSpan.FromSeconds(30),

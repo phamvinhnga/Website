@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 
 namespace Website.Biz.Services
 {
@@ -20,23 +21,23 @@ namespace Website.Biz.Services
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
+        private readonly JWTSettingOptions _jwtSettingOptions;
         private readonly ILogger<AuthManager> _logger;
+        private readonly IMapper _mapper;
 
         public AuthManager(
             IMapper mapper,
-            IConfiguration configuration,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             RoleManager<Role> roleManager,
+            IOptionsMonitor<JWTSettingOptions> jwtSettingOptions,
             ILogger<AuthManager> logger
         ) { 
             _mapper = mapper;
             _userManager = userManager;
-            _configuration = configuration;
             _roleManager = roleManager;
             _logger = logger;
+            _jwtSettingOptions = jwtSettingOptions.CurrentValue;
             _signInManager = signInManager;
         }
 
@@ -83,15 +84,8 @@ namespace Website.Biz.Services
             }
 
             user.SetPasswordHasher(input.Password);
-
             var result = await _userManager.CreateAsync(user);
             await _userManager.AddToRoleAsync(user, RoleExtension.Staff);
-
-            //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
-            //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
-            //await _emailSender.SendEmailAsync(message);
-
             return result;
         }
 
@@ -148,10 +142,10 @@ namespace Website.Biz.Services
 
             }
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("JWT:SecurityKey").Value));
-            var expires = DateTime.Now.AddHours(int.Parse(_configuration.GetSection("JWT:Expires").Value));
-            var audience = _configuration.GetSection("JWT:ValidAudience").Value;
-            var issuer = _configuration.GetSection("JWT:ValidIssuer").Value;
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettingOptions.SecurityKey));
+            var expires = DateTime.Now.AddHours(_jwtSettingOptions.Expires);
+            var audience = _jwtSettingOptions.ValidAudience;
+            var issuer = _jwtSettingOptions.ValidIssuer;
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var jwtSecurityToken = new JwtSecurityToken(
@@ -176,11 +170,11 @@ namespace Website.Biz.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             };
-   
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("JWT:SecurityKey").Value));
-            var expires = DateTime.Now.AddHours(int.Parse(_configuration.GetSection("JWT:ExpiresRefreshToken").Value));
-            var audience = _configuration.GetSection("JWT:ValidAudience").Value;
-            var issuer = _configuration.GetSection("JWT:ValidIssuer").Value;
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettingOptions.SecurityKey));
+            var expires = DateTime.Now.AddHours(_jwtSettingOptions.ExpiresRefreshToken);
+            var audience = _jwtSettingOptions.ValidAudience;
+            var issuer = _jwtSettingOptions.ValidIssuer;
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var jwtSecurityToken = new JwtSecurityToken(

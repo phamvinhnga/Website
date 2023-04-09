@@ -47,7 +47,7 @@ namespace Website.Biz.Managers
                 {
                     fs.Write(fileBytes, 0, fileBytes.Length);
                 }
-                input = input.Replace(item.Value, string.Format(_fileUploadOptions.Url, folder, id));
+                input = input.Replace(item.Value, _fileUploadOptions.SetFullUrl(folder.ToString(), id));
             }
 
             return input;
@@ -64,17 +64,16 @@ namespace Website.Biz.Managers
 
             if (string.IsNullOrEmpty(file.FileName))
             {
-                result.Id = $"no_name_{Guid.NewGuid()}".Replace("-", "_");
+                result.Id = result.SetIdRandom();
                 result.Name = null;
             }
             else
             {
-                result.Id = $"{Guid.NewGuid()}_{file.FileName}".Replace(" ", "_").Replace("-", "_").ConvertVietnameseToEnglish();
+                result.Id = result.SetId();
                 result.Name = file.FileName;
             }
 
-            var path = $"{_fileUploadOptions.Url}\\";
-
+            var path = _fileUploadOptions.Path;
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
             {
                 path += folder;
@@ -92,7 +91,7 @@ namespace Website.Biz.Managers
                 file.CopyTo(strem);
             }
 
-            result.Url = string.Format(_fileUploadOptions.Url, folder, result.Id);
+            result.Url = _fileUploadOptions.SetFullUrl(folder.ToString(), result.Id);
             result.Type = file.ContentType;
             return result;
         }
@@ -108,17 +107,16 @@ namespace Website.Biz.Managers
 
             if (string.IsNullOrEmpty(file.Name))
             {
-                result.Id = $"no_name_{Guid.NewGuid()}".Replace("-", "_");
+                result.Id = result.SetIdRandom();
                 result.Name = null;
             }
             else
             {
-                result.Id = $"{Guid.NewGuid()}_{file.Name}".Replace(" ", "_").Replace("-", "_").ConvertVietnameseToEnglish();
+                result.Id = result.SetId();
                 result.Name = file.Name;
             }
 
-            var path = $"{_fileUploadOptions.Url}\\";
-
+            var path = _fileUploadOptions.Path;
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
             {
                 path += folder;
