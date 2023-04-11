@@ -12,7 +12,7 @@ namespace Website.Shared.Common
         public enum Folder : int
         {
             Post,
-            Shop
+            Teacher
         }
     }
 }
