@@ -18,10 +18,10 @@ namespace Website.Api.Controllers
         private readonly IParentManager _parentManager;
 
         public ParentController(
-            IParentManager ParentManager
+            IParentManager parentManager
         ) 
         {
-            _parentManager = ParentManager;
+            _parentManager = parentManager;
         }
 
         [HttpGet("{id}")]
