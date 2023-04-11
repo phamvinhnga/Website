@@ -39,21 +39,17 @@ namespace Website.Entity.Repositories
             return input;
         }
 
-        public Task DeleteAsync(Teacher input)
+        public async Task<int> DeleteAsync(Teacher input)
         {
-            return Task.Run(async () => {
-                _context.Teacher.Remove(input);
-                await _context.SaveChangesAsync();
-            });
+            _context.Teacher.Remove(input);
+            return await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Teacher input)
+        public async Task<int> UpdateAsync(Teacher input)
         {
-            return Task.Run(async () => {
-                _context.Attach(input);
-                _context.Entry(input).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            });
+            _context.Attach(input);
+            _context.Entry(input).State = EntityState.Modified;
+            return await _context.SaveChangesAsync();
         }
     }
 }
