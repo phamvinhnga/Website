@@ -74,11 +74,8 @@ namespace Website.Entity
             base.OnModelCreating(builder);
         }
 
-        //public DbSet<Category> Category { get;set; }
-        //public DbSet<WebSetting> WebSetting { get;set; }
         public DbSet<Post> Post { get;set; }
-        public DbSet<Location> Location { get; set; }
-        public DbSet<Shop> Shop { get; set; }
-        public DbSet<CategoryFood> CategoryFood { get; set; }
+        public DbSet<Teacher> Teacher { get;set; }
+        public DbSet<Specialized> Specialized { get;set; }
     }
 }

@@ -15,15 +15,13 @@ namespace Website.Api.Services.ServiceBuilders
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IPostManager, PostManager>();
             services.AddTransient<IFileManager, FileManager>();
-            services.AddTransient<ILocationManager, LocationManager>();
-            services.AddTransient<IShopManager, ShopManager>();
+            services.AddTransient<ISpecializedManager, SpecializedManager>();
             #endregion End Manager
 
             #region Repository
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
-            services.AddTransient<ILocationRepository, LocationRepository>();
-            services.AddTransient<IShopRepository, ShopRepository>();
+            services.AddTransient<ISpecializedRepository, SpecializedRepository>();
             #endregion End Repository
         }
     }
