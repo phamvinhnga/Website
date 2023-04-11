@@ -16,12 +16,16 @@ namespace Website.Api.Services.ServiceBuilders
             services.AddTransient<IPostManager, PostManager>();
             services.AddTransient<IFileManager, FileManager>();
             services.AddTransient<ISpecializedManager, SpecializedManager>();
+            services.AddTransient<ITeacherManager, TeacherManager>();
+            services.AddTransient<IParentManager, ParentManager>();
             #endregion End Manager
 
             #region Repository
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<ISpecializedRepository, SpecializedRepository>();
+            services.AddTransient<ITeacherRepository, TeacherRepository>();
+            services.AddTransient<IParentRepository, ParentRepository>();
             #endregion End Repository
         }
     }

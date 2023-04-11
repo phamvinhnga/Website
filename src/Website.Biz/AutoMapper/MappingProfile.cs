@@ -37,6 +37,15 @@ namespace Website.Biz.AutoMapper
             CreateMap<Teacher, TeacherOutputModel>()
                 .ForMember(d => d.Thumbnail, opt => opt.MapFrom(src => src.Thumbnail.ConvertFromJson<FileModel>()));
             #endregion teacher
+
+            #region parent
+            CreateMap<ParentInputModel, Parent>()
+                .ForMember(d => d.Thumbnail, o => o.Ignore());
+            CreateMap<Parent, ParentOutputModel>()
+                .ForMember(d => d.Thumbnail, opt => opt.MapFrom(src => src.Thumbnail.ConvertFromJson<FileModel>()));
+            #endregion parent
+
+            CreateMap<Specialized, SpecializedOutputModel>().ReverseMap();
         }
     }
 }

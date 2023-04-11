@@ -12,7 +12,8 @@ namespace Website.Shared.Common
         public enum Folder : int
         {
             Post,
-            Teacher
+            Teacher,
+            Parent
         }
     }
 }

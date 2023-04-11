@@ -1,9 +1,13 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Website.Entity.Model
 {
-    public class TeacherInputModel
+    public class ParentInputModel
     {
         public int Id { get; set; }
         [Required]
@@ -12,25 +16,20 @@ namespace Website.Entity.Model
         [Required]
         [StringLength(64)]
         public string Name { get; set; }
-        public string Facebook { get; set; }
-        public string Twitter { get; set; }
-        public string Instagram { get; set; }
-        public int SpecializedId { get; set; }
+        public string Profession { get; set; }
+        public string Feedback { get; set; }
         public FileModel Thumbnail { get; set; }
     }
 
-    public class TeacherOutputModel
+    public class ParentOutputModel
     {
         public int Id { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string FullName { get; set; }
-        public string Facebook { get; set; }
-        public string Twitter { get; set; }
-        public string Instagram { get; set; }
-        public int SpecializedId { get; set; }
+        public string Profession { get; set; }
+        public string Feedback { get; set; }
         public FileModel Thumbnail { get; set; }
-        public SpecializedModel Specialized { get; set; }
         public DateTime CreateDate { get; set; }
         public int CreateUser { get; set; }
     }

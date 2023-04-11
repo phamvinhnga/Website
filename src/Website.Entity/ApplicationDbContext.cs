@@ -15,7 +15,6 @@ namespace Website.Entity
         protected readonly IConfiguration _configuration;
         protected readonly DbContextConnectionSettingOptions _dbContextConnectionOptions;
 
-
         public DbContextConnectionSettingOptions positionOptions { get; private set; }
 
         public ApplicationDbContext(
@@ -77,5 +76,6 @@ namespace Website.Entity
         public DbSet<Post> Post { get;set; }
         public DbSet<Teacher> Teacher { get;set; }
         public DbSet<Specialized> Specialized { get;set; }
+        public DbSet<Parent> Parent { get;set; }
     }
 }
