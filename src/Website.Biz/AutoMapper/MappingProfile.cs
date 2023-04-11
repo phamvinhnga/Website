@@ -10,6 +10,7 @@ namespace Website.Biz.AutoMapper
     {
         public MappingProfile()
         {
+            #region user
             CreateMap<UserSignUpInputDto, UserSignUpInputModel>();
             CreateMap<UserSignUpInputModel, User>()
                 .ForMember(d => d.PasswordHash, o => o.Ignore());
@@ -21,13 +22,21 @@ namespace Website.Biz.AutoMapper
                 .ForMember(d => d.PasswordHash, o => o.Ignore());
             CreateMap<User, StaffOutputModel>();
             CreateMap<StaffOutputModel, StaffOutputDto>();
+            #endregion user
 
-            //post
+            #region post
             CreateMap<PostInputModel, Post>()
                 .ForMember(d => d.Thumbnail, o => o.Ignore());
             CreateMap<Post, PostOutputModel>()
                 .ForMember(d => d.Thumbnail, opt => opt.MapFrom(src => src.Thumbnail.ConvertFromJson<FileModel>()));
-            //end post
+            #endregion post
+
+            #region teacher
+            CreateMap<TeacherInputModel, Teacher>()
+                .ForMember(d => d.Thumbnail, o => o.Ignore());
+            CreateMap<Teacher, TeacherOutputModel>()
+                .ForMember(d => d.Thumbnail, opt => opt.MapFrom(src => src.Thumbnail.ConvertFromJson<FileModel>()));
+            #endregion teacher
         }
     }
 }

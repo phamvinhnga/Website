@@ -14,6 +14,7 @@ Properties/
 obj/
 bin/
 .git
+App_Data/
 
 # System files
 .DS_Store
