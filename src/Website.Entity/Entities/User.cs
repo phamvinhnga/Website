@@ -14,15 +14,9 @@ namespace Website.Entity.Entities
         public string Name { get; set; }
 
         [Required]
-        public Guid ExtentionId { get; set; } = Guid.NewGuid();
+        public Guid ExtensionId { get; set; } = Guid.NewGuid();
 
-        public virtual string FullName
-        {
-            get
-            {
-                return $"{this.Surname.Trim()} {this.Name.Trim()}";
-            }
-        }
+        public virtual string FullName => $"{this.Surname.Trim()} {this.Name.Trim()}";
 
         public void SetPasswordHasher(string password)
         {

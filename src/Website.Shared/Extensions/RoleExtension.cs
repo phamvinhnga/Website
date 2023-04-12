@@ -6,9 +6,9 @@
         public const string Staff = "Staff";
     }
 
-    public static class PolicyExtention
+    public static class PolicyExtension
     {
-        public const string Manager_Account_Staff = "Manager_Account_Staff";
-        public const string Manager_Post = "Manager_Post";
+        public const string ManagerAccountStaff = "Manager_Account_Staff";
+        public const string ManagerPost = "Manager_Post";
     }
 }

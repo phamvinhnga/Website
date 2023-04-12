@@ -11,7 +11,7 @@ namespace Website.Shared.Extensions
             return value.ConvertFromJson<TOutput>();
         }
 
-        public static string ConvertToJson<TEntitty>(this TEntitty input)
+        public static string ConvertToJson<TEntity>(this TEntity input)
         {
             return JsonConvert.SerializeObject(input, Formatting.None);
         }

@@ -8,6 +8,6 @@ namespace Website.Shared.Common
 {
     public static class Message
     {
-        public const string NoPemission = "Don't have permission";
+        public const string NoPermission = "Don't have permission";
     }
 }

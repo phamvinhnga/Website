@@ -12,7 +12,7 @@ namespace Website.Api.Filters
         {
             if (context.HttpContext.User.Claims.IsAdmin()) return;
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            context.Result = new JsonResult(new { message = Message.NoPemission });
+            context.Result = new JsonResult(new { message = Message.NoPermission });
         }
     }
 
@@ -22,7 +22,7 @@ namespace Website.Api.Filters
         {
             if (context.HttpContext.User.Claims.IsStaff()) return;
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            context.Result = new JsonResult(new { message = Message.NoPemission });
+            context.Result = new JsonResult(new { message = Message.NoPermission });
         }
     }
 }

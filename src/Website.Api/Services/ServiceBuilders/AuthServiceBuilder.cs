@@ -46,7 +46,7 @@ namespace Website.Api.Services.ServiceBuilders
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(PolicyExtention.Manager_Account_Staff, policy => policy.RequireClaim(PolicyExtention.Manager_Account_Staff));
+                options.AddPolicy(PolicyExtension.ManagerAccountStaff, policy => policy.RequireClaim(PolicyExtension.ManagerAccountStaff));
             });
 
             services.AddScoped<AdminRoleFilter>();

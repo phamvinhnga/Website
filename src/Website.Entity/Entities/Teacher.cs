@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Website.Entity.Entities
 {
+    [Table("Teacher")]
     public class Teacher : BaseEntity<int>
     {
         [Required]
@@ -23,13 +24,7 @@ namespace Website.Entity.Entities
         public int SpecializedId { get; set; }
         [ForeignKey("SpecializedId")]
         public Specialized Specialized { get; set; }
-        public virtual string FullName
-        {
-            get
-            {
-                return $"{this.Surname.Trim()} {this.Name.Trim()}";
-            }
-        }
+        public virtual string FullName => $"{this.Surname.Trim()} {this.Name.Trim()}";
         public int Index { get; set; }
         public bool IsDisplayIndexPage { get; set; }
         public bool IsDisplayTeacherPage { get; set; }

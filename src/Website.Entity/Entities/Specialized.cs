@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Website.Entity.Entities
 {
+    [Table("Specialized")]
     public class Specialized : BaseEntity<int>
     {
         [Required]
         public string Name { get; set; }
-
-        public ICollection<Teacher> Posts { get; }
+        public ICollection<Teacher> Teachers { get; }
     }
 }

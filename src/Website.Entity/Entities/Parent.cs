@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Website.Entity.Entities
 {
+    [Table("Parent")]
     public class Parent : BaseEntity<int>
     {
         [Required]
@@ -19,12 +16,6 @@ namespace Website.Entity.Entities
         public string Profession { get; set; }
         public string Feedback { get; set; }
 
-        public virtual string FullName
-        {
-            get
-            {
-                return $"{this.Surname.Trim()} {this.Name.Trim()}";
-            }
-        }
+        public virtual string FullName => $"{this.Surname.Trim()} {this.Name.Trim()}";
     }
 }

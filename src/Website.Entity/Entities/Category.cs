@@ -1,5 +1,8 @@
-﻿namespace Website.Entity.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Website.Entity.Entities
 {
+    [Table("Category")]
     public class Category : BaseTreeEntity<int>
     {
         public string Code { get; set; }

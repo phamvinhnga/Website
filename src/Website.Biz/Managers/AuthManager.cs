@@ -112,7 +112,7 @@ namespace Website.Biz.Managers
             {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(AuthExtension.UserExtentionId, user.ExtentionId.ToString())
+                new Claim(AuthExtension.UserExtensionId, user.ExtensionId.ToString())
             };
 
             var userRoles = await _userManager.GetRolesAsync(user);

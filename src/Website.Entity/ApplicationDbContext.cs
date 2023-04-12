@@ -12,17 +12,12 @@ namespace Website.Entity
 {
     public class ApplicationDbContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
-        protected readonly IConfiguration _configuration;
-        protected readonly DbContextConnectionSettingOptions _dbContextConnectionOptions;
-
-        public DbContextConnectionSettingOptions positionOptions { get; private set; }
+        private readonly DbContextConnectionSettingOptions _dbContextConnectionOptions;
 
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options,
-            IOptions<DbContextConnectionSettingOptions> dbContextConnectionOptions,
-            IConfiguration configuration) : base(options)
+            IOptions<DbContextConnectionSettingOptions> dbContextConnectionOptions) : base(options)
         {
-            _configuration = configuration;
             _dbContextConnectionOptions = dbContextConnectionOptions.Value;
         }
 
@@ -42,7 +37,7 @@ namespace Website.Entity
             }
             else
             {
-                Log.Debug("Configured accsess to the database");
+                Log.Debug("Configured access to the database");
             }
         }
 
@@ -60,7 +55,7 @@ namespace Website.Entity
                     PasswordHash = "AQAAAAEAACcQAAAAEFOoRzBpqXb8F0WviERxaxTASMpJTaTKwArF5PY8t1CP2R+9Wbxhkg8cAxH7iC1moA==", 
                     ConcurrencyStamp = "418f2935-171e-4f02-90b4-93a8746f4bf6",
                     SecurityStamp = "MI2WNXFQ63DAE4BCNM5YLJKU2MSFWIVQ",
-                    ExtentionId = new Guid("2a17f888-1e93-4334-9189-d81c3aac9c45")
+                    ExtensionId = new Guid("2a17f888-1e93-4334-9189-d81c3aac9c45")
                 }
             );
             builder.Entity<Role>().HasData(

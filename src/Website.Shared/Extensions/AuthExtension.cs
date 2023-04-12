@@ -7,7 +7,7 @@ namespace Website.Shared.Extensions
 {
     public static class AuthExtension
     {
-        public const string UserExtentionId = "UserExtentionId";
+        public const string UserExtensionId = "UserExtensionId";
 
         public static int GetUserId(this IEnumerable<Claim> claims)
         {
@@ -20,9 +20,9 @@ namespace Website.Shared.Extensions
             return GetClaimValueByType(claims, ClaimTypes.Name);
         }
 
-        public static Guid? GetUserExtentionId(this IEnumerable<Claim> claims)
+        public static Guid? GetUserExtensionId(this IEnumerable<Claim> claims)
         {
-            var value = GetClaimValueByType(claims, UserExtentionId);
+            var value = GetClaimValueByType(claims, UserExtensionId);
             return value != null ? Guid.Parse(value) : null;
         }
 
@@ -30,40 +30,25 @@ namespace Website.Shared.Extensions
         {
             var value = GetClaimValueByType(claims, ClaimTypes.Role);
 
-            if(value == null)
-            {
-                return false;
-            }
-
-            return value.ToUpper().Equals(RoleExtension.Admin.ToUpper());
+            return value != null && value.ToUpper().Equals(RoleExtension.Admin.ToUpper());
         }
 
         public static bool IsStaff(this IEnumerable<Claim> claims)
         {
             var value = GetClaimValueByType(claims, ClaimTypes.Role);
 
-            if (value == null)
-            {
-                return false;
-            }
-
-            return value.ToUpper().Equals(RoleExtension.Staff.ToUpper());
+            return value != null && value.ToUpper().Equals(RoleExtension.Staff.ToUpper());
         }
 
         private static string GetClaimValueByType(IEnumerable<Claim> claims, string claimType)
         {
-            if (claims == null || !claims.Any() || string.IsNullOrEmpty(claimType))
+            var enumerable = claims.ToList();
+            if (!enumerable.Any() || string.IsNullOrEmpty(claimType))
             {
                 return null;
             }
-
-            var claim = claims.FirstOrDefault(c => c.Type.Equals(claimType));
-            if (claim == null)
-            {
-                return null;
-            }
-
-            return claim.Value;
+            var claim = enumerable.FirstOrDefault(c => c.Type.Equals(claimType));
+            return claim?.Value;
         }
     }
 }

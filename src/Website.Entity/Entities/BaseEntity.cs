@@ -8,22 +8,20 @@ namespace Website.Entity.Entities
 {
     public abstract class BaseEntity<TPrimaryKey> where TPrimaryKey : struct
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TPrimaryKey Id { get; set; }
 
         [Ignore]
         public virtual DateTime CreateDate { get; set; }
 
-        [Ignore] private int CreateUser { get; set; }
+        [Ignore] 
+        private int CreateUser { get; set; }
 
-        [AllowNull]
-        [Ignore]
-        protected virtual DateTime ModifyDate { get; set; }
+        [AllowNull, Ignore]
+        public virtual DateTime ModifyDate { get; set; }
 
-        [AllowNull]
-        [Ignore]
-        private int ModifyUser { get; set; }
+        [AllowNull, Ignore] 
+        public int ModifyUser { get; set; }
 
         public virtual void SetCreateDefault(int createUser, DateTime? createDate = null)
         {
