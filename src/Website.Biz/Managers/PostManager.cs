@@ -30,7 +30,7 @@ namespace Website.Biz.Managers
             var entity = _mapper.Map<Post>(input);
             entity.SetCreateDefault(userId);
             entity.Type = nameof(Folder.Post);
-            entity.Content = _fileManager.BuidlFileContent(entity.Content, Folder.Post);
+            entity.Content = _fileManager.BuildFileContent(entity.Content, Folder.Post);
             if (input.Thumbnail != null && string.IsNullOrEmpty(input.Thumbnail.Id))
             {
                 var file = _fileManager.Upload(input.Thumbnail, Folder.Post);
@@ -52,7 +52,7 @@ namespace Website.Biz.Managers
             }
             _mapper.Map(input, entity);
             entity.SetModifyDefault(userId);
-            entity.Content = _fileManager.BuidlFileContent(entity.Content, Folder.Post);
+            entity.Content = _fileManager.BuildFileContent(entity.Content, Folder.Post);
             if (input.Thumbnail != null && string.IsNullOrEmpty(input.Thumbnail.Id))
             {
                 var file = _fileManager.Upload(input.Thumbnail, Folder.Post);

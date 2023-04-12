@@ -40,7 +40,7 @@ namespace Website.Api.Services.ServiceBuilders
                                 Id = JwtBearerDefaults.AuthenticationScheme
                             }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                      }
                 });
             });

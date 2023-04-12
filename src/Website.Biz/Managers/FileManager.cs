@@ -20,7 +20,7 @@ namespace Website.Biz.Managers
             _fileUploadOptions = fileUploadOptions.CurrentValue;
         }
 
-        public string BuidlFileContent(string input, Folder folder)
+        public string BuildFileContent(string input, Folder folder)
         {
             if (input == null)
             {

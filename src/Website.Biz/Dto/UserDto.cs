@@ -26,23 +26,26 @@ namespace Website.Biz.Dto
 
     public class UserSignInInputDto
     {
-        [Required]
-        public string UserName { get; set; }
+        public UserSignInInputDto(string password, string userName)
+        {
+            Password = password;
+            UserName = userName;
+        }
 
         [Required]
-        public string Password { get; set; }
+        public string UserName { get; }
+
+        [Required]
+        public string Password { get; }
     }
 
     public class CurrentUserOutputDto
     {
         public int Id { get; set; }
-
         public string Surname { get; set; }
-
         public string Name { get; set; }
         public string FullName { get; set; }
-
-        public Guid ExtentionId { get; set; }
+        public Guid ExtensionId { get; set; }
     }
 
     public class UserSignInOutputDto

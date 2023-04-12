@@ -4,21 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Website.Api.Filters
 {
-    internal class ArgumentNullExceptionFilter : ExceptionFilterAttribute
+    internal abstract class ArgumentNullExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {
-            if (context.Exception is ArgumentNullException)
+            if (context.Exception is not ArgumentNullException) return;
+            context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+            context.Result = new JsonResult(new
             {
-                context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                message = context.Exception.GetBaseException().Message
+            });
 
-                context.Result = new JsonResult(new
-                {
-                    message = context.Exception.GetBaseException().Message
-                });
-
-                base.OnException(context);
-            }
+            base.OnException(context);
         }
     }
 }

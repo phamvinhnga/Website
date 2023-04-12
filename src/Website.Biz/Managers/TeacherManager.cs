@@ -16,12 +16,12 @@ namespace Website.Biz.Managers
         private readonly IMapper _mapper;
 
         public TeacherManager(
-            ITeacherRepository TeacherRepository,
+            ITeacherRepository teacherRepository,
             IFileManager fileManager,
             IMapper mapper
         )
         {
-            _teacherRepository = TeacherRepository;
+            _teacherRepository = teacherRepository;
             _fileManager = fileManager;
             _mapper = mapper;
         }

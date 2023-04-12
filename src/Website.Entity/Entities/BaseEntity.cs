@@ -15,27 +15,26 @@ namespace Website.Entity.Entities
         [Ignore]
         public virtual DateTime CreateDate { get; set; }
 
-        [Ignore]
-        public int CreateUser { get; set; }
+        [Ignore] private int CreateUser { get; set; }
 
         [AllowNull]
         [Ignore]
-        public virtual DateTime ModifyDate { get; set; }
+        protected virtual DateTime ModifyDate { get; set; }
 
         [AllowNull]
         [Ignore]
-        public int ModifyUser { get; set; }
+        private int ModifyUser { get; set; }
 
         public virtual void SetCreateDefault(int createUser, DateTime? createDate = null)
         {
             this.CreateUser = createUser;
-            this.CreateDate = createDate == null ? DateTime.Now : createDate.Value;
+            this.CreateDate = createDate ?? DateTime.Now;
         }
 
         public virtual void SetModifyDefault(int modifyUser, DateTime? modifyDate = null)
         {
             this.ModifyUser = modifyUser;
-            this.ModifyDate = modifyDate == null ? DateTime.Now : modifyDate.Value;
+            this.ModifyDate = modifyDate ?? DateTime.Now;
         }
     }
 
@@ -50,30 +49,28 @@ namespace Website.Entity.Entities
         public virtual int Order { get; set; }
         public virtual string CodeData { get; set; }
 
-        [Ignore]
-        public virtual DateTime CreateDate { get; set; }
+        [Ignore] protected virtual DateTime CreateDate { get; set; }
 
-        [Ignore]
-        public int CreateUser { get; set; }
-
-        [Ignore]
-        [AllowNull]
-        public virtual DateTime ModifyDate { get; set; }
+        [Ignore] private int CreateUser { get; set; }
 
         [Ignore]
         [AllowNull]
-        public int ModifyUser { get; set; }
+        protected virtual DateTime ModifyDate { get; set; }
+
+        [Ignore]
+        [AllowNull]
+        private int ModifyUser { get; set; }
 
         public virtual void SetCreateDefault(int createUser, DateTime? createDate = null)
         {
             this.CreateUser = createUser;
-            this.CreateDate = createDate == null ? DateTime.Now : createDate.Value;
+            this.CreateDate = createDate ?? DateTime.Now;
         }
 
         public virtual void SetModifyDefault(int modifyUser, DateTime? modifyDate = null)
         {
             this.ModifyUser = modifyUser;
-            this.ModifyDate = modifyDate == null ? DateTime.Now : modifyDate.Value;
+            this.ModifyDate = modifyDate ?? DateTime.Now;
         }
     }
 }

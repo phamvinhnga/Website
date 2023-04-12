@@ -14,7 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 
-namespace Website.Biz.Services
+namespace Website.Biz.Managers
 {
     public class AuthManager : IAuthManager
     {

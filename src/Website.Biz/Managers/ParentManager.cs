@@ -16,11 +16,11 @@ namespace Website.Biz.Managers
         private readonly IMapper _mapper;
 
         public ParentManager(
-            IParentRepository ParentRepository,
+            IParentRepository parentRepository,
             IFileManager fileManager,
             IMapper mapper
         ) {
-            _parentRepository = ParentRepository;
+            _parentRepository = parentRepository;
             _fileManager = fileManager;
             _mapper = mapper;
         }

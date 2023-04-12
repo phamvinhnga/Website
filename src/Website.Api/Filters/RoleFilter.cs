@@ -10,11 +10,9 @@ namespace Website.Api.Filters
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!context.HttpContext.User.Claims.IsAdmin())
-            {
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                context.Result = new JsonResult(new { message = Message.NoPemission });
-            }
+            if (context.HttpContext.User.Claims.IsAdmin()) return;
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            context.Result = new JsonResult(new { message = Message.NoPemission });
         }
     }
 
@@ -22,11 +20,9 @@ namespace Website.Api.Filters
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!context.HttpContext.User.Claims.IsStaff())
-            {
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                context.Result = new JsonResult(new { message = Message.NoPemission });
-            }
+            if (context.HttpContext.User.Claims.IsStaff()) return;
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            context.Result = new JsonResult(new { message = Message.NoPemission });
         }
     }
 }

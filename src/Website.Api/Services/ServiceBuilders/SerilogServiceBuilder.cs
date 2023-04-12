@@ -9,13 +9,13 @@ namespace Website.Api.Services.ServiceBuilders
             string defaultConnection = configuration.GetSection("ConnectionString:DefaultConnection").Value;
             string server = configuration.GetSection("ConnectionString:Server").Value;
             string database = configuration.GetSection("ConnectionString:Database").Value;
-            string UserId = configuration.GetSection("ConnectionString:UserId").Value;
+            string userId = configuration.GetSection("ConnectionString:UserId").Value;
             string password = configuration.GetSection("ConnectionString:Password").Value;
 
             var connectionString = string.Format(defaultConnection,
                                               server,
                                               database,
-                                              UserId,
+                                              userId,
                                               password,
                                               database);
 

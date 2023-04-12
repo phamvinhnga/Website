@@ -15,11 +15,11 @@ namespace Website.Biz.Managers
         private readonly IMapper _mapper;
 
         public SpecializedManager(
-            ISpecializedRepository SpecializedRepository,
+            ISpecializedRepository specializedRepository,
             IMapper mapper
         )
         {
-            _specializedRepository = SpecializedRepository;
+            _specializedRepository = specializedRepository;
             _mapper = mapper;
         }
 

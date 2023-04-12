@@ -7,7 +7,7 @@ namespace Website.Biz.Managers.Interfaces
 {
     public interface IFileManager
     {
-        string BuidlFileContent(string input, CoreEnum.Folder folder);
+        string BuildFileContent(string input, CoreEnum.Folder folder);
         FileModel Upload(IFormFile file, CoreEnum.Folder folder);
         FileModel Upload(FileModel file, CoreEnum.Folder folder);
     }

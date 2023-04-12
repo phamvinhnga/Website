@@ -4,30 +4,18 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Website.Api.Filters
 {
-    internal class BadRequestExceptionFilter : ExceptionFilterAttribute
+    internal abstract class BadRequestExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {
-            if (context.Exception is BadRequestException)
+            if (context.Exception is not BadRequestException exception) return;
+
+            context.HttpContext.Response.StatusCode = exception is { Code: 0 } ? StatusCodes.Status400BadRequest : exception.Code;
+            context.Result = new JsonResult(new
             {
-                var exception = context.Exception as BadRequestException;
-
-                if (exception.Code == 0)
-                {
-                    context.HttpContext.Response.StatusCode =  StatusCodes.Status400BadRequest;
-                }
-                else
-                {
-                    context.HttpContext.Response.StatusCode = exception.Code;
-                }
-
-                context.Result = new JsonResult(new
-                {
-                    message = context.Exception.GetBaseException().Message
-                });
-
-                base.OnException(context);
-            }
+                message = exception.GetBaseException().Message
+            });
+            base.OnException(context);
         }
     }
 }
