@@ -30,7 +30,7 @@ namespace Website.Api.Services.ServiceBuilders
                     In = ParameterLocation.Header
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                 {
+                {
                      {
                         new OpenApiSecurityScheme
                         {
