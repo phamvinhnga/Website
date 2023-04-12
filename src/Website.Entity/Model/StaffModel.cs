@@ -1,6 +1,6 @@
 ﻿namespace Website.Entity.Model
 {
-    public class StaffRregisterInputModel
+    public class StaffRegisterInputModel
     {
         public string Surname { get; set; }
 

@@ -37,7 +37,7 @@ namespace Website.Biz.Managers
             return _mapper.Map<List<StaffOutputModel>>(query);
         }
 
-        public async Task RegisterStaffAsync(StaffRregisterInputModel input)
+        public async Task RegisterStaffAsync(StaffRegisterInputModel input)
         {
             if(input == null)
             {

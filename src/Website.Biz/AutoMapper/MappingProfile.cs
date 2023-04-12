@@ -17,8 +17,8 @@ namespace Website.Biz.AutoMapper
             CreateMap<UserSignInOutputModel, UserSignInOutputDto>();
             CreateMap<User, CurrentUserOutputModel>();
             CreateMap<CurrentUserOutputModel, CurrentUserOutputDto>();
-            CreateMap<StaffRegisterInputDto, StaffRregisterInputModel>();
-            CreateMap<StaffRregisterInputModel, User>()
+            CreateMap<StaffRegisterInputDto, StaffRegisterInputModel>();
+            CreateMap<StaffRegisterInputModel, User>()
                 .ForMember(d => d.PasswordHash, o => o.Ignore());
             CreateMap<User, StaffOutputModel>();
             CreateMap<StaffOutputModel, StaffOutputDto>();

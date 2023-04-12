@@ -17,6 +17,9 @@ namespace Website.Entity.Model
         public string Instagram { get; set; }
         public int SpecializedId { get; set; }
         public FileModel Thumbnail { get; set; }
+        public int Index { get; set; }
+        public bool IsDisplayIndexPage { get; set; }
+        public bool IsDisplayTeacherPage { get; set; }
     }
 
     public class TeacherOutputModel
@@ -33,5 +36,8 @@ namespace Website.Entity.Model
         public SpecializedModel Specialized { get; set; }
         public DateTime CreateDate { get; set; }
         public int CreateUser { get; set; }
+        public int Index { get; set; }
+        public bool IsDisplayIndexPage { get; set; }
+        public bool IsDisplayTeacherPage { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace Website.Entity.Model
         public string Profession { get; set; }
         public string Feedback { get; set; }
         public FileModel Thumbnail { get; set; }
+        public int Index { get; set; }
+        public bool IsDisplayIndexPage { get; set; }
     }
 
     public class ParentOutputModel
@@ -31,6 +33,8 @@ namespace Website.Entity.Model
         public string Feedback { get; set; }
         public FileModel Thumbnail { get; set; }
         public DateTime CreateDate { get; set; }
-        public int CreateUser { get; set; }
+        public int CreateUser { get; set; }        
+        public int Index { get; set; }
+        public bool IsDisplayIndexPage { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace Website.Biz.Managers.Interfaces
     public interface IUserManager
     {
         Task<List<StaffOutputModel>> GetListStaffAsync();
-        Task RegisterStaffAsync(StaffRregisterInputModel input);
+        Task RegisterStaffAsync(StaffRegisterInputModel input);
     }
 }

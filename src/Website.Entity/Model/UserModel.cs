@@ -46,7 +46,7 @@ namespace Website.Entity.Model
         public string Name { get; set; }
         public string FullName { get; set; }
 
-        public Guid ExtentionId { get; set; }
+        public Guid ExtensionId { get; set; }
 
     }
 }

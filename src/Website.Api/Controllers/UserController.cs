@@ -30,7 +30,7 @@ namespace Website.Api.Controllers
         [Authorize(Roles = RoleExtension.Admin)]
         public async Task RegisterStaffAsync([FromBody] StaffRegisterInputDto input)
         {
-            var staff = _mapper.Map<StaffRregisterInputModel>(input);
+            var staff = _mapper.Map<StaffRegisterInputModel>(input);
             await _userManager.RegisterStaffAsync(staff);
         }
 
@@ -39,8 +39,8 @@ namespace Website.Api.Controllers
         [ServiceFilter(typeof(AdminRoleFilter))]
         public async Task<IActionResult> GetListStaffAsync()
         {
-            var retult = await _userManager.GetListStaffAsync();
-            return Ok(_mapper.Map<List<StaffOutputDto>>(retult));
+            var result = await _userManager.GetListStaffAsync();
+            return Ok(_mapper.Map<List<StaffOutputDto>>(result));
         }
     }
 }
