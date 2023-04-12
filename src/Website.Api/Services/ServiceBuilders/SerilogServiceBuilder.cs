@@ -6,11 +6,11 @@ namespace Website.Api.Services.ServiceBuilders
     {
         public static void CreateBuilder(IConfiguration configuration, IWebHostEnvironment env)
         {
-            string defaultConnection = configuration.GetSection("ConnectionString:DefaultConnection").Value;
-            string server = configuration.GetSection("ConnectionString:Server").Value;
-            string database = configuration.GetSection("ConnectionString:Database").Value;
-            string userId = configuration.GetSection("ConnectionString:UserId").Value;
-            string password = configuration.GetSection("ConnectionString:Password").Value;
+            var defaultConnection = configuration.GetSection("ConnectionString:DefaultConnection").Value;
+            var server = configuration.GetSection("ConnectionString:Server").Value;
+            var database = configuration.GetSection("ConnectionString:Database").Value;
+            var userId = configuration.GetSection("ConnectionString:UserId").Value;
+            var password = configuration.GetSection("ConnectionString:Password").Value;
 
             var connectionString = string.Format(defaultConnection,
                                               server,

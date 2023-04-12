@@ -18,10 +18,10 @@ namespace Website.Api.Controllers
         private readonly ITeacherManager _teacherManager;
 
         public TeacherController(
-            ITeacherManager TeacherManager
+            ITeacherManager teacherManager
         ) 
         {
-            _teacherManager = TeacherManager;
+            _teacherManager = teacherManager;
         }
 
         [HttpGet("{id}")]
