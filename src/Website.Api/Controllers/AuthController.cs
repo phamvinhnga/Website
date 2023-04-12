@@ -64,7 +64,7 @@ namespace Website.Api.Controllers
             var refreshToken = Request.Headers["refresh-token"].ToString();
             if (string.IsNullOrEmpty(refreshToken))
             {
-                return BadRequest( new { message = "Refresh token is emty" });
+                return BadRequest( new { message = "Refresh token is empty" });
             }
             var result = await _authManager.RefreshTokenAsync(refreshToken);
             return Ok(result);

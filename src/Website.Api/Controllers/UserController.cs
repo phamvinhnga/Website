@@ -35,7 +35,7 @@ namespace Website.Api.Controllers
         }
 
         [HttpGet("staff")]
-        //[Authorize(Roles = RoleExtension.Admin, Policy = PolicyExtention.Manager_Account_Staff)]
+        //[Authorize(Roles = RoleExtension.Admin, Policy = PolicyExtension.Manager_Account_Staff)]
         [ServiceFilter(typeof(AdminRoleFilter))]
         public async Task<IActionResult> GetListStaffAsync()
         {

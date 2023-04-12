@@ -30,5 +30,8 @@ namespace Website.Entity.Entities
                 return $"{this.Surname.Trim()} {this.Name.Trim()}";
             }
         }
+        public int Index { get; set; }
+        public bool IsDisplayIndexPage { get; set; }
+        public bool IsDisplayTeacherPage { get; set; }
     }
 }
