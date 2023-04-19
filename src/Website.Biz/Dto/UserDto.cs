@@ -39,6 +39,21 @@ namespace Website.Biz.Dto
         public string Password { get; }
     }
 
+    public class UserChangePasswordInputDto
+    {
+        public UserChangePasswordInputDto(string newPassword, string oldPassword)
+        {
+            NewPassword = newPassword;
+            OldPassword = oldPassword;
+        }
+
+        [Required]
+        public string OldPassword { get; }
+
+        [Required]
+        public string NewPassword { get; }
+    }
+    
     public class CurrentUserOutputDto
     {
         public int Id { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Website.Api.Filters
 {
-    internal abstract class ArgumentNullExceptionFilter : ExceptionFilterAttribute
+    internal class ArgumentNullExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {

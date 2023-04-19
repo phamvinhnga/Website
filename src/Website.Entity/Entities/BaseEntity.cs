@@ -15,7 +15,7 @@ namespace Website.Entity.Entities
         public virtual DateTime CreateDate { get; set; }
 
         [Ignore] 
-        private int CreateUser { get; set; }
+        public int CreateUser { get; set; }
 
         [AllowNull, Ignore]
         public virtual DateTime ModifyDate { get; set; }
@@ -49,7 +49,7 @@ namespace Website.Entity.Entities
 
         [Ignore] protected virtual DateTime CreateDate { get; set; }
 
-        [Ignore] private int CreateUser { get; set; }
+        [Ignore] public int CreateUser { get; set; }
 
         [Ignore]
         [AllowNull]

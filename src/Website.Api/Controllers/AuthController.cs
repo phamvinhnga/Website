@@ -34,6 +34,12 @@ namespace Website.Api.Controllers
             return Ok(_mapper.Map<CurrentUserOutputDto>(user));
         }
 
+        [HttpPut("password")]
+        public async Task<IActionResult> ResetPasswordAsync([FromBody] UserChangePasswordInputDto input)
+        {
+            return Ok(true);
+        }
+        
         [HttpPost("sign-up")]
         [AllowAnonymous]
         public async Task<IActionResult> SignUpAsync([FromBody] UserSignUpInputDto input)

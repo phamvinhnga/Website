@@ -13,6 +13,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using Website.Biz.Dto;
 
 namespace Website.Biz.Managers
 {
@@ -41,6 +42,22 @@ namespace Website.Biz.Managers
             _signInManager = signInManager;
         }
 
+        public async Task ResetPasswordAsync(UserChangePasswordInputDto input, int userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                throw new ArgumentNullException($"UserId {userId} cannot found in system");
+            }
+
+            if (!await _userManager.CheckPasswordAsync(user, input.NewPassword))
+            {
+                throw new BadRequestException("Mật khẩu cũ không đúng");
+            }
+            user.SetPasswordHasher(input.NewPassword);
+            //await _userManager.save
+        }
+        
         public async Task<UserSignInOutputModel> RefreshTokenAsync(string refreshToken)
         {
             var jwtSecurityToken = new JwtSecurityTokenHandler().ReadJwtToken(refreshToken);
@@ -48,7 +65,7 @@ namespace Website.Biz.Managers
 
             if (string.IsNullOrEmpty(userId))
             {
-                throw new BadRequestException("xx");
+                throw new BadRequestException("Token error");
             }
 
             var user = await _userManager.FindByIdAsync(userId);

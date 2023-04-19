@@ -4,7 +4,7 @@ using Website.Shared.Exceptions;
 
 namespace Website.Api.Filters
 {
-    public abstract class UnauthorizedExceptionFilter : ExceptionFilterAttribute
+    public class UnauthorizedExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {

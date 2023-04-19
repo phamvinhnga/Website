@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Website.Api.Filters
 {
-    internal abstract class BadRequestExceptionFilter : ExceptionFilterAttribute
+    internal class BadRequestExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {

@@ -12,7 +12,6 @@ namespace Website.Api.Services.ServiceBuilders
             services.AddControllers(options =>
             {
                 options.Filters.Add<BadRequestExceptionFilter>();
-                options.Filters.Add<BadRequestExceptionFilter>();
                 options.Filters.Add<UnauthorizedExceptionFilter>();
                 options.Filters.Add<ArgumentNullExceptionFilter>();
             });
