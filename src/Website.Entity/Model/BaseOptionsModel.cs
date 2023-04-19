@@ -10,7 +10,8 @@ namespace Website.Entity.Model
 {
     public class JWTSettingOptions
     {
-        public static string Position { get { return "JWT"; } }
+        public static string Position => "JWT";
+
         [Required]
         public string SecurityKey { get; set; }
         public string ValidIssuer { get; set; }
@@ -21,18 +22,15 @@ namespace Website.Entity.Model
 
     public class FileUploadSettingOptions
     {
-        public static string Position { get { return "Upload"; } }
+        public static string Position => "Upload";
+
         [Required]
         public string Folder { get; set; }
         [Required]
         public string Url { get; set; }
 
-        public string Path { 
-            get
-            {
-                return $"{this.Folder}\\";
-            } 
-        }
+        public string Path => $"{this.Folder}\\";
+
         public string SetFullUrl(string folder,string id)
         {
             return string.Format(this.Url, folder, id);
@@ -41,7 +39,8 @@ namespace Website.Entity.Model
 
     public class DbContextConnectionSettingOptions
     {
-        public static string Position { get { return "ConnectionString"; } }
+        public static string Position => "ConnectionString";
+
         [Required]
         public string DefaultConnection { get; set; }
         [Required]
@@ -56,17 +55,12 @@ namespace Website.Entity.Model
         public int Port { get; set; }
         [Required]
         public string Version { get; set; }
-        public string ConnectionString
-        {
-            get
-            {
-                return string.Format(this.DefaultConnection,
-                                       this.Server,
-                                       this.Database,
-                                       this.UserId,
-                                       this.Password,
-                                       this.Database);
-            }
-        }
+        public string ConnectionString =>
+            string.Format(this.DefaultConnection,
+                this.Server,
+                this.Database,
+                this.UserId,
+                this.Password,
+                this.Database);
     }
 }

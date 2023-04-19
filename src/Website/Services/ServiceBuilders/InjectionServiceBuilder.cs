@@ -1,12 +1,9 @@
-﻿using Website.Biz.Services;
-using Microsoft.Extensions.Configuration;
-using Website.Biz.Managers;
+﻿using Website.Biz.Managers;
 using Website.Biz.Managers.Interfaces;
-using Website.Entity.Repositories.Interfaces;
 using Website.Entity.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+using Website.Entity.Repositories.Interfaces;
 
-namespace Website.Api.Services.ServiceBuilders
+namespace Website.Services.ServiceBuilders
 {
     internal static class InjectionServiceBuilder
     {

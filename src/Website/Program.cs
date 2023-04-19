@@ -3,9 +3,23 @@ using AutoMapper;
 using ServiceStack;
 using Website.Api.Services.ServiceBuilders;
 using Website.Biz.AutoMapper;
+using Website.Entity.Model;
+using Website.Services.ServiceBuilders;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+builder.Services.AddOptions<DbContextConnectionSettingOptions>()
+    .Bind(builder.Configuration
+        .GetSection(DbContextConnectionSettingOptions.Position))
+    .ValidateDataAnnotations();
+builder.Services.AddOptions<FileUploadSettingOptions>()
+    .Bind(builder.Configuration
+        .GetSection(FileUploadSettingOptions.Position))
+    .ValidateDataAnnotations();
+builder.Services.AddOptions<JWTSettingOptions>()
+    .Bind(builder.Configuration
+        .GetSection(JWTSettingOptions.Position))
+    .ValidateDataAnnotations();
 builder.Services.AddControllersWithViews();
 builder.Services.UseSqlServiceBuilder(configuration);
 builder.Services.UseInjectionServiceBuilder(configuration);
