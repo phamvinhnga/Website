@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
-namespace Website.Api.Services.ServiceBuilders
+namespace Website.Services.ServiceBuilders
 {
     internal static class AuthServiceBuilder
     {

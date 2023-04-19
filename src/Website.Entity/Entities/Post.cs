@@ -17,6 +17,6 @@ namespace Website.Entity.Entities
         public string Permalink { get; set; }
         public string MetaTitle { get; set; }
         public string MetaDescription { get; set; }
-
+        
     }
 }

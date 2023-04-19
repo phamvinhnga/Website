@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Website.Biz.AutoMapper;
 
-namespace Website.Api.Services.ServiceBuilders
+namespace Website.Services.ServiceBuilders
 {
     internal static class AutoMapperServiceBuilder
     {

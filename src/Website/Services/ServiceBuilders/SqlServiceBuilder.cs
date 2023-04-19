@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Website.Entity;
+﻿using Website.Entity;
 using Website.Entity.Entities;
 
-namespace Website.Api.Services.ServiceBuilders
+namespace Website.Services.ServiceBuilders
 {
     internal static class SqlServiceBuilder
     {
