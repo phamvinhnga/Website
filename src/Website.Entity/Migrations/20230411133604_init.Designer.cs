@@ -321,7 +321,7 @@ namespace Website.Entity.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<Guid>("ExtentionId")
+                    b.Property<Guid>("ExtensionId")
                         .HasColumnType("char(36)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -386,7 +386,7 @@ namespace Website.Entity.Migrations
                             ConcurrencyStamp = "418f2935-171e-4f02-90b4-93a8746f4bf6",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
-                            ExtentionId = new Guid("2a17f888-1e93-4334-9189-d81c3aac9c45"),
+                            ExtensionId = new Guid("2a17f888-1e93-4334-9189-d81c3aac9c45"),
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
