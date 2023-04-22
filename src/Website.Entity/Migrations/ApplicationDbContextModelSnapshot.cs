@@ -125,6 +125,54 @@ namespace Website.Entity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Website.Entity.Entities.Parent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("CreateUser")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Feedback")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDisplayIndexPage")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("ModifyDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ModifyUser")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Profession")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Thumbnail")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Parent");
+                });
+
             modelBuilder.Entity("Website.Entity.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -264,8 +312,17 @@ namespace Website.Entity.Migrations
                     b.Property<string>("Facebook")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
                     b.Property<string>("Instagram")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDisplayIndexPage")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsDisplayTeacherPage")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("ModifyDate")
                         .HasColumnType("datetime(6)");
@@ -452,7 +509,7 @@ namespace Website.Entity.Migrations
             modelBuilder.Entity("Website.Entity.Entities.Teacher", b =>
                 {
                     b.HasOne("Website.Entity.Entities.Specialized", "Specialized")
-                        .WithMany("Posts")
+                        .WithMany("Teachers")
                         .HasForeignKey("SpecializedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -462,7 +519,7 @@ namespace Website.Entity.Migrations
 
             modelBuilder.Entity("Website.Entity.Entities.Specialized", b =>
                 {
-                    b.Navigation("Posts");
+                    b.Navigation("Teachers");
                 });
 #pragma warning restore 612, 618
         }

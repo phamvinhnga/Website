@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Website.Entity.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,6 +69,35 @@ namespace Website.Entity.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Parent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Surname = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Thumbnail = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Profession = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Feedback = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Index = table.Column<int>(type: "int", nullable: false),
+                    IsDisplayIndexPage = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateUser = table.Column<int>(type: "int", nullable: false),
+                    ModifyDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ModifyUser = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parent", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -268,6 +297,9 @@ namespace Website.Entity.Migrations
                     Thumbnail = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SpecializedId = table.Column<int>(type: "int", nullable: false),
+                    Index = table.Column<int>(type: "int", nullable: false),
+                    IsDisplayIndexPage = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    IsDisplayTeacherPage = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreateUser = table.Column<int>(type: "int", nullable: false),
                     ModifyDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -364,6 +396,9 @@ namespace Website.Entity.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Parent");
 
             migrationBuilder.DropTable(
                 name: "Post");

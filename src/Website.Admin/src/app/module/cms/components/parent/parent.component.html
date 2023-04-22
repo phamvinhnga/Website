@@ -1,0 +1,96 @@
+<div id="post-manager"
+    *ngIf="data" 
+>
+    <div class="margin-b-30">
+        <h5>
+            <i class="pi pi-fw pi-home"></i>
+            Quản lý danh sách phụ huynh
+        </h5>
+    </div>
+
+    <p-table
+        #dtTmp
+        [value]="data.items" 
+        [scrollable]="true"
+        [paginator]="true"
+        [showCurrentPageReport]="true" 
+        [rows]="50"
+        [totalRecords]="data.totalItem"
+        [rowsPerPageOptions]="[{ showAll: 'Tất cả' },50,100,150]"
+        [globalFilterFields]="['title']"
+        styleClass="p-datatable-gridlines"
+        currentPageReportTemplate="Hiển thị bài viết từ {first} đến {last} của {totalRecords} bài viết">
+
+        <ng-template pTemplate="caption">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                    pInputText
+                    [(ngModel)]="search"
+                    (input)="dtTmp.filterGlobal($any($event.target)?.value, 'startsWith')"
+                    class="p-inputtext-sm" type="text" 
+                    placeholder="Tìm kiếm bài viết">         
+            </span>
+            <button 
+                [routerLink]="'./0'"
+                pButton type="button" 
+                label="Thêm mới" 
+                icon="pi pi-plus" 
+                class="p-button-sm p-button-success float-end">
+            </button>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="justify-content-center" style="min-width:100px; max-width:100px"></th>
+                <th style="width:25%">Tên phụ huynh</th>
+                <th class="justify-content-center" style="max-width:120px">Vị trí</th>
+                <th class="justify-content-center" style="max-width:200px">Hiển thị trang chủ</th>
+                <th style="max-width:200px">Ngày tạo</th>
+                <th style="max-width:120px"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td class="justify-content-center" style="min-width:100px; max-width:100px">
+                    <div>
+                        <img width="50" height="50" *ngIf="item.thumbnail" [src]="item.thumbnail.url" >
+                        <img width="50" height="50" *ngIf="!item.thumbnail" [src]="'assets/demo/images/avatar/placeholder.png'">
+                    </div>
+                </td>
+                <td>{{item.fullName}}</td>
+                <td class="justify-content-center" style="max-width:120px">{{item.index}}</td>
+                <td class="justify-content-center" style="max-width:200px">
+                    <p-checkbox [binary]="true" [value]="true" (onChange)="changeDisplayIndexPage(item)" [(ngModel)]="item.isDisplayIndexPage" inputId="ny"></p-checkbox>
+                </td>
+                <td style="max-width:200px">{{ item.createDate | date: 'dd-MM-yyyy'}} lúc {{ item.createDate | date: 'hh:mm'}}</td>
+                <td style="max-width:120px" class="justify-content-center">
+                    <button 
+                        [routerLink]="item.id"
+                        pButton 
+                        pRipple 
+                        icon="pi pi-pencil" 
+                        class="p-button-sm p-button-help margin-r-5">
+                    </button>
+                    <button 
+                        pButton 
+                        pRipple 
+                        icon="pi pi-trash" 
+                        class="p-button-sm p-button-warning" 
+                        (click)="onDelete(item)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog #cd [style]="{width: '25vw'}">
+    <ng-template pTemplate="header">
+        <h3>Thông báo xóa phụ huynh</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" class="p-button-sm" pButton icon="pi pi-times" label="Quay lại" (click)="cd.reject()"></button>
+        <button type="button" class="p-button-sm p-button-danger" pButton icon="pi pi-check" label="Chắc chắn" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

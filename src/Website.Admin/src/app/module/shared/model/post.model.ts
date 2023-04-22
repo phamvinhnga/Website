@@ -59,6 +59,8 @@ export class PostOutputModel implements IPostOutputModel {
         this.permalink = data["permalink"];
         this.metaTitle = data["metaTitle"];
         this.metaDescription = data["metaDescription"];
+        this.createDate = data["createDate"];
+        this.createUser = data["createUser"];
         this.thumbnail = data["thumbnail"] ? FileModel.fromJS(data["thumbnail"]) : undefined;
       }
   }

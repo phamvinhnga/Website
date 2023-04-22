@@ -28,7 +28,7 @@ namespace Website.Entity.Repositories
 
         public async Task<BasePageOutputModel<Parent>> GetListAsync(BasePageInputModel input)
         {
-            var query = _context.Parent.AsNoTracking().Where(w => w.FullName.StartsWith(input.Search));
+            var query = _context.Parent.AsNoTracking().Where(w => w.Name.StartsWith(input.Search)).OrderBy(o => o.Index);
 
             var count = await query.CountAsync();
 

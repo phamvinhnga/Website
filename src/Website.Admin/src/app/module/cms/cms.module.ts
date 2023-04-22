@@ -27,7 +27,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ParentModule } from './components/parent/parent.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShopComponent,
     AccountComponent,
     AccountInfoComponent,
-    PostEditComponent,
+    PostEditComponent
   ],
   imports: [
     ProgressSpinnerModule,
@@ -60,7 +60,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InputTextModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    ParentModule
   ],
   providers:[
     ConfirmationService,

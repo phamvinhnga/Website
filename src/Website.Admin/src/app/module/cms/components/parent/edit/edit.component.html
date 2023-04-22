@@ -1,0 +1,129 @@
+<div 
+    *ngIf="form" 
+    [formGroup]="form" 
+    id="post-crud">
+    <div class="d-flex margin-b-20">
+        <h5 class="d-block flex-fill">
+            <i class="pi pi-fw pi-home"></i>
+            {{ title }}
+        </h5>
+        <div>
+            <button 
+                [routerLink]="'../../parent'"
+                pButton type="button" 
+                label="Quay lại" 
+                icon="pi pi-arrow-left" 
+                class="p-button-sm p-button-secondary margin-l-5 float-end">
+            </button>
+            <button 
+                (click)="save()"
+                [disabled]="form.invalid"
+                pButton type="button" 
+                label="Lưu phụ huynh" 
+                icon="pi pi-save" 
+                class="p-button-sm p-button-success float-end">
+            </button>
+        </div>
+    </div>
+    <div class="row bg-white padding-t-20">
+        <div class="col-6">
+            <div class="field w-100 margin-b-20">
+                <h6>Họ <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('surname')}" 
+                    formControlName="surname" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+                <small *ngIf="formValidation('surname')" class="p-error block d-block">Họ không được để trống</small>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="field w-100 margin-b-20">
+                <h6>Tên <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('name')}" 
+                    formControlName="name" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+                <small *ngIf="formValidation('name')" class="p-error block d-block">Tên không được để trống</small>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Nội dung phản hồi</h6>
+                <textarea 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('feedback')}" 
+                    formControlName="feedback" 
+                    class="w-100 p-inputtext" 
+                    pInputText ></textarea>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="field w-100 margin-b-20">
+                <h6>Nghề nghiệp</h6>
+                <input 
+                    formControlName="profession" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="field w-100 margin-b-20">
+                <h6>Vị trí <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('index')}" 
+                    formControlName="index" 
+                    class="w-100 p-inputtext" 
+                    type="number"
+                    pInputNumber />
+                <small *ngIf="formValidation('index')" class="p-error block d-block">Vị trí không được để trống</small>
+            </div>
+        </div>
+        <div class="col-12 margin-b-20">
+            <label for="ny" class="margin-r-10"><h6 class="margin-0">Hiển thị trên trang chủ</h6></label>
+            <p-checkbox [binary]="true" [value]="true" formControlName="isDisplayIndexPage" inputId="ny"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="row bg-white margin-t-20">
+        <div class="col-12">
+            <div class="field margin-b-20 padding-t-20">
+                <h6>Ảnh đại diện</h6>
+                <div>
+                    <a 
+                        *ngIf="listFileImage[0]"
+                        [href]="listFileImage[0]?.url" 
+                        class="example-image-link" 
+                        data-lightbox="example-set">
+                        <img width="250px" [src]="listFileImage[0]?.url" [alt]="listFileImage[0]?.name">
+                    </a>
+                    <a 
+                        *ngIf="!listFileImage[0]"
+                        (click)="thumnailInputTmp.click()"
+                        class="example-image-link">
+                        <img width="250px" [src]="'assets/demo/images/avatar/placeholder.png'">
+                    </a>
+
+                    <input #thumnailInputTmp type="file" (change)="onRemoveFileImage(); onHandleUploadImage($event)" class="d-none"/>
+                    <div class="margin-t-10">
+                        <button 
+                            (click)="thumnailInputTmp.click()"
+                            pButton type="button" 
+                            label="Tải ảnh" 
+                            icon="pi pi-upload" 
+                            class="p-button-sm p-button-primary">
+                        </button>
+                        <button 
+                            (click)="onRemoveFileImage()"
+                            pButton type="button" 
+                            label="Xóa ảnh" 
+                            icon="pi pi-times" 
+                            class="p-button-sm p-button-danger margin-l-5">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CmsComponent } from './cms.component';
 import { PostEditComponent } from './components/post/edit/edit.component';
 import { PostComponent } from './components/post/post.component';
+import { ParentComponent } from './components/parent/parent.component';
+import { ParentEditComponent } from './components/parent/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,15 @@ const routes: Routes = [
       {
         path: 'post/:type/:id',
         component: PostEditComponent
-      }
+      },
+      {
+        path: 'parent',
+        component: ParentComponent
+      },
+      {
+        path: 'parent/:id',
+        component: ParentEditComponent
+      },
     ]
   }
 ];
