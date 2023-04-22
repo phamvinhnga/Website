@@ -15,5 +15,7 @@ namespace Website.Biz.Managers.Interfaces
         Task<TeacherOutputModel> GetByIdAsync(int id);
         Task DeleteAsync(int id);
         Task<BasePageOutputModel<TeacherOutputModel>> GetListAsync(BasePageInputModel input);
+        Task<bool> SetIsDisplayIndexPageAsync(int id, bool isDisplayIndexPage);
+        Task<bool> SetIsDisplayTeacherPageAsync(int id, bool isDisplayTeacherPage);
     }
 }

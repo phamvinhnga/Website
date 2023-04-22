@@ -1,12 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("Partials/Header")
-@Html.Partial("Partials/Facilities")
-@Html.Partial( "~/Views/Shared/_ClassRoom.cshtml")
-@Html.Partial("Partials/AboutUs")
-@Html.Partial("Partials/BookSeat")
-@Html.Partial("Partials/MeetOurTeacher")
-@Html.Partial("Partials/Testimonial")
-@Html.Partial( "~/Views/Shared/_Blog.cshtml")
+
+@await Html.PartialAsync("Partials/Header")
+@await Html.PartialAsync("Partials/Facilities")
+@await Html.PartialAsync( "~/Views/Shared/_ClassRoom.cshtml")
+@await Html.PartialAsync("Partials/AboutUs")
+@await Html.PartialAsync("Partials/BookSeat")
+@await Html.PartialAsync("Partials/MeetOurTeacher")
+@await Html.PartialAsync("Partials/Testimonial")
+@await Html.PartialAsync( "~/Views/Shared/_Blog.cshtml")

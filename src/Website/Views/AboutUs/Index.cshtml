@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("~/Views/Home/Partials/Header.cshtml")
-@Html.Partial("~/Views/Home/Partials/AboutUs.cshtml")
+
+@await Html.PartialAsync("~/Views/Home/Partials/Header.cshtml")
+@await Html.PartialAsync("~/Views/Home/Partials/AboutUs.cshtml")

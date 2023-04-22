@@ -58,10 +58,10 @@
 
    </head>
 <body>
-    @Html.Partial("_Navbar")
-    @RenderBody()
-    @Html.Partial("_Footer")
-    <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+@await Html.PartialAsync("_Navbar")
+@RenderBody()
+@await Html.PartialAsync("_Footer")
+<a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

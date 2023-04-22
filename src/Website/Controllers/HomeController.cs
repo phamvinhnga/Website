@@ -9,7 +9,6 @@ namespace Website.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
         private readonly IPostRepository _postRepository;
 
         public HomeController(
@@ -19,7 +18,6 @@ namespace Website.Controllers
         )
         {
             _logger = logger;
-            _context = context;
             _postRepository = postRepository;
         }
 

@@ -73,6 +73,28 @@ namespace Website.Biz.Managers
             await _teacherRepository.DeleteAsync(entity);
         }
 
+        public async Task<bool> SetIsDisplayIndexPageAsync(int id, bool isDisplayIndexPage)
+        {
+            var query = await _teacherRepository.GetByIdAsync(id);
+            if(query == null)
+            {
+                throw new BadRequestException($"Cannot find TeacherId {id}");
+            }
+            query.IsDisplayIndexPage = isDisplayIndexPage;
+            return await _teacherRepository.UpdateAsync(query) > 0;
+        }
+        
+        public async Task<bool> SetIsDisplayTeacherPageAsync(int id, bool isDisplayTeacherPage)
+        {
+            var query = await _teacherRepository.GetByIdAsync(id);
+            if(query == null)
+            {
+                throw new BadRequestException($"Cannot find TeacherId {id}");
+            }
+            query.IsDisplayTeacherPage = isDisplayTeacherPage;
+            return await _teacherRepository.UpdateAsync(query) > 0;
+        }
+        
         public async Task<TeacherOutputModel> GetByIdAsync(int id)
         {
             var query = await _teacherRepository.GetByIdAsync(id);

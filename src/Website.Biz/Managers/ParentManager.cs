@@ -82,7 +82,17 @@ namespace Website.Biz.Managers
             return _mapper.Map<ParentOutputModel>(query);
         }
 
- 
+        public async Task<bool> SetIsDisplayIndexPageAsync(int id, bool isDisplayIndexPage)
+        {
+            var query = await _parentRepository.GetByIdAsync(id);
+            if(query == null)
+            {
+                throw new BadRequestException($"Cannot find ParentId {id}");
+            }
+            query.IsDisplayIndexPage = isDisplayIndexPage;
+            return await _parentRepository.UpdateAsync(query) > 0;
+        }
+        
         public async Task<BasePageOutputModel<ParentOutputModel>> GetListAsync(BasePageInputModel input)
         {
             var query = await _parentRepository.GetListAsync(input);

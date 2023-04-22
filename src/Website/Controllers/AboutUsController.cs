@@ -7,19 +7,18 @@ namespace Website.Controllers
     public class AboutUsController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
         private readonly IPostRepository _postRepository;
 
         public AboutUsController(
             ILogger<HomeController> logger,
-            IPostRepository postRepository,
-            ApplicationDbContext context
+            IPostRepository postRepository
         )
         {
             _logger = logger;
-            _context = context;
             _postRepository = postRepository;
         }
+        
+        [Route("ve-chung-toi")]
         public async Task<IActionResult> Index()
         {
             var p = await _postRepository.GetByIdAsync(1);

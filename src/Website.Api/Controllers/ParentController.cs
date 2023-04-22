@@ -1,4 +1,5 @@
-﻿using Website.Api.Filters;
+﻿using System.ComponentModel.DataAnnotations;
+using Website.Api.Filters;
 using Website.Biz.Managers.Interfaces;
 using Website.Entity.Model;
 using Website.Shared.Extensions;
@@ -24,12 +25,18 @@ namespace Website.Api.Controllers
             _parentManager = parentManager;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             return Ok(await _parentManager.GetByIdAsync(id));
         }
 
+        [HttpPut("index-page/{id:int}")]
+        public async Task<IActionResult> SetIsDisplayIndexPageAsync([Required] int id, [Required] bool isDisplayIndexPage)
+        {
+            return Ok(await _parentManager.SetIsDisplayIndexPageAsync(id, isDisplayIndexPage));
+        }
+        
         [HttpGet]
         public async Task<IActionResult> GetListAsync([FromQuery] BasePageInputModel input)
         {

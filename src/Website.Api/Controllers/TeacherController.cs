@@ -1,4 +1,5 @@
-﻿using Website.Api.Filters;
+﻿using System.ComponentModel.DataAnnotations;
+using Website.Api.Filters;
 using Website.Biz.Managers.Interfaces;
 using Website.Entity.Model;
 using Website.Shared.Extensions;
@@ -50,14 +51,26 @@ namespace Website.Api.Controllers
             return Ok(true);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateAsync(int id, [FromBody] TeacherInputModel input)
         {
             await _teacherManager.UpdateAsync(input, User.Claims.GetUserId());
             return Ok(true);
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("index-page/{id:int}")]
+        public async Task<IActionResult> SetIsDisplayIndexPageAsync([Required] int id, [Required] bool isDisplayIndexPage)
+        {
+            return Ok(await _teacherManager.SetIsDisplayIndexPageAsync(id, isDisplayIndexPage));
+        }
+        
+        [HttpPut("teacher-page/{id:int}")]
+        public async Task<IActionResult> SetIsDisplayTeacherPageAsync([Required] int id, [Required] bool isDisplayTeacherPage)
+        {
+            return Ok(await _teacherManager.SetIsDisplayTeacherPageAsync(id, isDisplayTeacherPage));
+        }
+        
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             await _teacherManager.DeleteAsync(id);
