@@ -5,6 +5,7 @@ import { PostEditComponent } from './components/post/edit/edit.component';
 import { PostComponent } from './components/post/post.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { ParentEditComponent } from './components/parent/edit/edit.component';
+import { SpecializedComponent } from './components/specialized/specialized.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
         path: 'parent/:id',
         component: ParentEditComponent
       },
+      {
+        path: 'specialized',
+        component: SpecializedComponent
+      }
     ]
   }
 ];

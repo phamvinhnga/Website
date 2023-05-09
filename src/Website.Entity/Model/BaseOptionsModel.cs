@@ -61,6 +61,6 @@ namespace Website.Entity.Model
                 this.Database,
                 this.UserId,
                 this.Password,
-                this.Database);
+                this.Port);
     }
 }

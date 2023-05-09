@@ -1,0 +1,18 @@
+<div *ngIf="form" [formGroup]="form" id="post-crud">
+    <div class="row bg-white padding-t-20">
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Tên <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
+                <input [ngClass]="{'ng-invalid ng-dirty': formValidation('name')}" formControlName="name"
+                    class="w-100 p-inputtext" pInputText />
+                <small *ngIf="formValidation('name')" class="p-error block d-block">Tên không được để trống</small>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<div class="p-dialog-footer app-dialog-footer">
+
+    <button (click)="save()" [disabled]="form.invalid" pButton type="button" label="Lưu lĩnh vực" icon="pi pi-save"
+    class="p-button-sm p-button-success float-end"></button>
+</div>

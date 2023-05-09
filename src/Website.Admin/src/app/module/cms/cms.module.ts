@@ -28,6 +28,7 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ParentModule } from './components/parent/parent.module';
+import { SpecializedModule } from './components/specialized/specialized.module';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ParentModule } from './components/parent/parent.module';
     MessagesModule,
     MessageModule,
     ToastModule,
-    ParentModule
+    ParentModule,
+    SpecializedModule
   ],
   providers:[
     ConfirmationService,
