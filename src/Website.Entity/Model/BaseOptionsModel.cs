@@ -29,7 +29,7 @@ namespace Website.Entity.Model
         [Required]
         public string Url { get; set; }
 
-        public string Path => $"{this.Folder}\\";
+        public string Path => $"{this.Folder}";
 
         public string SetFullUrl(string folder,string id)
         {

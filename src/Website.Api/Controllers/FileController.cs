@@ -21,7 +21,8 @@ namespace Website.Api.Controllers
         [HttpGet("{folder}/{id}")]
         public IActionResult GetFileAsync([Required] string folder, [Required] string id)
         {
-            var path = $"{_fileUploadOptions.Folder}\\{folder}\\{id}";
+            var path = $"{_fileUploadOptions.Path}/{folder}/{id}";
+            Console.WriteLine(path);
             if (System.IO.File.Exists(path))
             {
                 return File(System.IO.File.OpenRead(path), "application/octet-stream", Path.GetFileName(path));
