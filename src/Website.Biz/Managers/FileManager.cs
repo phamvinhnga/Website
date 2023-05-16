@@ -30,15 +30,20 @@ namespace Website.Biz.Managers
             var matches = Regex.Matches(input, reg, RegexOptions.IgnoreCase);
             foreach (Match item in matches)
             {
-                var path = $"{_fileUploadOptions.Path}/{folder}";
-                if (!Directory.Exists(path))
+                var path = _fileUploadOptions.Path;
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), _fileUploadOptions.Path);
                 {
-                    Directory.CreateDirectory(path);
+                    path += $"/{folder}";
+                    uploadPath = Path.Combine(uploadPath, folder.ToString());
+                }
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
                 }
                 var base64String = item.Groups[2].Value;
                 byte[] fileBytes = Convert.FromBase64String(base64String);
                 var id = $"no_name_{Guid.NewGuid()}{GetTypeFile(item.Groups[0].Value)}".Replace("-", "_");
-                using (var fs = new FileStream($"{path}/{id}", FileMode.Create))
+                using (var fs = new FileStream($"{uploadPath}/{id}", FileMode.Create))
                 {
                     fs.Write(fileBytes, 0, fileBytes.Length);
                 }
@@ -46,49 +51,6 @@ namespace Website.Biz.Managers
             }
 
             return input;
-        }
-
-        public FileModel Upload(IFormFile file, Folder folder)
-        {
-            if(file == null)
-            {
-                return null;
-            }
-
-            var result = new FileModel();
-
-            if (string.IsNullOrEmpty(file.FileName))
-            {
-                result.Id = result.SetIdRandom();
-                result.Name = null;
-            }
-            else
-            {
-                result.Id = result.SetId();
-                result.Name = file.FileName;
-            }
-
-            var path = _fileUploadOptions.Path;
-            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), path);
-            {
-                path += folder;
-                uploadPath = Path.Combine(uploadPath, folder.ToString());
-            }
-
-            if (!Directory.Exists(uploadPath))
-            {
-                Directory.CreateDirectory(uploadPath);
-            }
-
-            var filePath = Path.Combine(uploadPath, result.Id);
-            using (var strem = File.Create(filePath))
-            {
-                file.CopyTo(strem);
-            }
-
-            result.Url = _fileUploadOptions.SetFullUrl(folder.ToString(), result.Id);
-            result.Type = file.ContentType;
-            return result;
         }
 
         public FileModel Upload(FileModel file, Folder folder)
@@ -111,15 +73,20 @@ namespace Website.Biz.Managers
                 result.Id = result.SetId();
             }
 
-            var path = $"{_fileUploadOptions.Path}/{folder}";
-            if (!Directory.Exists(path))
+            var path = _fileUploadOptions.Path;
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), _fileUploadOptions.Path);
             {
-                Directory.CreateDirectory(path);
+                path += $"/{folder}";
+                uploadPath = Path.Combine(uploadPath, folder.ToString());
+            }
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
             }
 
             string str = Regex.Replace(file.Url, @"^data:image\/[a-zA-Z]+;base64,", string.Empty);
             byte[] fileBytes = Convert.FromBase64String(str);
-            using (var fs = new FileStream($"{path}/{result.Id}", FileMode.Create))
+            using (var fs = new FileStream($"{uploadPath}/{result.Id}", FileMode.Create))
             {
                 fs.Write(fileBytes, 0, fileBytes.Length);
             }

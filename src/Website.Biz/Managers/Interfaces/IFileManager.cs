@@ -8,7 +8,6 @@ namespace Website.Biz.Managers.Interfaces
     public interface IFileManager
     {
         string BuildFileContent(string input, CoreEnum.Folder folder);
-        FileModel Upload(IFormFile file, CoreEnum.Folder folder);
         FileModel Upload(FileModel file, CoreEnum.Folder folder);
     }
 }

@@ -9,8 +9,9 @@ services:
             - data:/var/lib/mysql
             - ./_MySQL_Init_Script:/docker-entrypoint-initdb.d
         environment:
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
             - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         ports:
@@ -28,6 +29,19 @@ services:
         ports:
             - 5000:5000
         environment:
+            - ConnectionString__Server=${MYSQL_SERVER}
+            - ConnectionString__Database=${MYSQL_DATABASE}
+            - ConnectionString__UserId=${MYSQL_ROOT_USER}
+            - ConnectionString__Password=${MYSQL_ROOT_PASSWORD}
+            - ConnectionString__Port= 3306
+            - ConnectionString__Version=8.0.33
+            - JWT__SecurityKey=JWT_SecurityKey
+            - JWT__ValidIssuer=JWT_ValidIssuer
+            - JWT__ValidAudience=JWT_ValidAudience
+            - JWT__Expires=1
+            - JWT__ExpiresRefreshToken=2
+            - Upload__Folder=/upload
+            - Upload__Url=http://localhost:5000/api/file/{0}/{1}
             - ASPNETCORE_URLS=http://0.0.0.0:5000
         depends_on:
             - website-database
