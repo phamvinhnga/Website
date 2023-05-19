@@ -35,9 +35,9 @@ services:
             - ConnectionString__Password=${MYSQL_ROOT_PASSWORD}
             - ConnectionString__Port= 3306
             - ConnectionString__Version=8.0.33
-            - JWT__SecurityKey=JWT_SecurityKey
-            - JWT__ValidIssuer=JWT_ValidIssuer
-            - JWT__ValidAudience=JWT_ValidAudience
+            - JWT__SecurityKey=ABC_C421AAEE0D114E9C
+            - JWT__ValidIssuer=ABC
+            - JWT__ValidAudience=ABC
             - JWT__Expires=1
             - JWT__ExpiresRefreshToken=2
             - Upload__Folder=/upload
