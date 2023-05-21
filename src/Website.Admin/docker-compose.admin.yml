@@ -1,0 +1,14 @@
+version: '3.0'
+
+services:
+    website-admin:
+        image: website-admin
+        container_name: website-admin
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 4200:4200
+        volumes:
+            - "/app/node_modules"
+            - ".:/app"
