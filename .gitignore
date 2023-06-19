@@ -13,7 +13,7 @@ Properties/
 .vscode
 obj/
 bin/
-.git
+
 App_Data/
 
 # System files
