@@ -36,6 +36,7 @@ jobs:
           id: docker_build
           uses: docker/build-push-action@v2
           with:
-            context: ./src/Website.Api
+            context: .
             push: true
             tags: ngapham0705/website-api:tagname
+            file: ./src/Website.Api/Dockerfile
