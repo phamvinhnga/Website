@@ -41,13 +41,14 @@ jobs:
             tags: ngapham0705/website-api:latest
             file: ./src/Website.Api/Dockerfile
 
-        # - name: executing remote ssh commands using password
-        #   uses: appleboy/ssh-action@v0.1.10
-        #   with:
-        #     host: ${{ secrets.HOST }}
-        #     username: ${{ secrets.USERNAME }}
-        #     password: ${{ secrets.PASSWORD }}
-        #     port: ${{ secrets.PORT }}
-        #     script: |
-        #       docker compose
+        - name: executing remote ssh commands using password
+          uses: appleboy/ssh-action@v0.1.10
+          with:
+            host: 150.95.113.186
+            username: root
+            password: Aa@150297
+            script: |
+              cd website-api/
+              docker-compose up -d
+
               

@@ -17,15 +17,12 @@ services:
         ports:
             - 3308:3306
     website-api:
-        image: ngapham0705/website-api
+        image: ngapham0705/website-api:tagname
         container_name: website-api
         restart: always
         volumes:
             - data:/var/lib/website-api
             - ./upload:/upload
-        ##build:
-          ##context: .
-          #dockerfile: src/Website.Api/Dockerfile
         ports:
             - 5000:5000
         environment:
