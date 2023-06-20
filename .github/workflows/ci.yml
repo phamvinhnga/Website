@@ -33,10 +33,9 @@ jobs:
             password: Aa@150297
 
         - name: Build and push Docker image
-          env:
-            DOCKER_USERNAME: ngapham0705
-            DOCKER_REPOSITORY: website-api
-            IMAGE_TAG: latest
-          run: |
-            docker build -t $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
-            docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
+          id: docker_build
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: ngapham0705/website-api:tagname
