@@ -48,7 +48,7 @@ jobs:
             username: root
             password: Aa@150297
             script: |
-              cd website-api/
-              docker-compose up -d
+              cd /website-api/
+              docker compose up -d
 
               
