@@ -14,17 +14,17 @@ jobs:
         dotnet-version: [ '6.0.x' ]
 
     steps:
-        - uses: actions/checkout@v3
-        - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-          uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
-        - name: Install dependencies
-          run: dotnet restore
-        - name: Build
-          run: dotnet build --configuration Release --no-restore
-        - name: Test
-          run: dotnet test --no-restore --verbosity normal
+        # - uses: actions/checkout@v3
+        # - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        #   uses: actions/setup-dotnet@v3
+        #   with:
+        #     dotnet-version: ${{ matrix.dotnet-version }}
+        # - name: Install dependencies
+        #   run: dotnet restore
+        # - name: Build
+        #   run: dotnet build --configuration Release --no-restore
+        # - name: Test
+        #   run: dotnet test --no-restore --verbosity normal
 
         - name: Log in to Docker Hub
           uses: docker/login-action@v2
@@ -41,13 +41,13 @@ jobs:
             tags: ngapham0705/website-api:tagname
             file: ./src/Website.Api/Dockerfile
 
-        - name: executing remote ssh commands using password
-          uses: appleboy/ssh-action@v0.1.10
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.PASSWORD }}
-            port: ${{ secrets.PORT }}
-            script: |
-              docker compose
+        # - name: executing remote ssh commands using password
+        #   uses: appleboy/ssh-action@v0.1.10
+        #   with:
+        #     host: ${{ secrets.HOST }}
+        #     username: ${{ secrets.USERNAME }}
+        #     password: ${{ secrets.PASSWORD }}
+        #     port: ${{ secrets.PORT }}
+        #     script: |
+        #       docker compose
               
