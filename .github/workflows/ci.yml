@@ -40,3 +40,14 @@ jobs:
             push: true
             tags: ngapham0705/website-api:tagname
             file: ./src/Website.Api/Dockerfile
+
+        - name: executing remote ssh commands using password
+          uses: appleboy/ssh-action@v0.1.10
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            port: ${{ secrets.PORT }}
+            script: |
+              docker compose
+              
