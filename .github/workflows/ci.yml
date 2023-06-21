@@ -45,8 +45,8 @@ jobs:
 
               cd /website-api/
 
-              echo "Xin chào" > hello.txt
-              
+              echo "Xin chào" > website-api/hello.txt
+
               if [[ -f .env ]]; then
                 sed -i 's/^MYSQL_SERVER=.*/MYSQL_SERVER=website-database/' .env
                 sed -i 's/^MYSQL_ROOT_USER=.*/MYSQL_ROOT_USER=root/' .env
