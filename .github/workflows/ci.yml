@@ -60,7 +60,7 @@ jobs:
                 echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> website-api/.env
               fi
 
-            scp docker-compose.api.deloy.yml ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_IP }}:~/website-api/
+              scp docker-compose.api.deloy.yml ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_IP }}:~/website-api/
             # ssh user@your-linux-server-ip 'cd ~/website-api && docker-compose up -d'
             
               # cd website-api/
