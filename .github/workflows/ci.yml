@@ -43,6 +43,8 @@ jobs:
                 mkdir ~/website-api
               fi
 
+              cd /website-api/
+
               if [[ -f website-api/.env ]]; then
                 sed -i 's/^MYSQL_SERVER=.*/MYSQL_SERVER=website-database/' ~/website-api/.env
                 sed -i 's/^MYSQL_ROOT_USER=.*/MYSQL_ROOT_USER=root/' ~/website-api/.env
@@ -51,17 +53,15 @@ jobs:
                 sed -i 's/^MYSQL_PASSWORD=.*/MYSQL_PASSWORD=admin/' ~/website-api/.env
                 sed -i 's/^MYSQL_DATABASE=.*/MYSQL_DATABASE=website-docker/' ~/website-api/.env
               else
-
                 touch ~/website-api/.env
                 echo "MYSQL_SERVER=website-database" > ~/website-api/.env
-                # echo "MYSQL_ROOT_USER=root" >> ~/website-api/.env
-                # echo "MYSQL_ROOT_PASSWORD=root" >> ~/website-api/.env
-                # echo "MYSQL_USER=admin" >> ~/website-api/.env
-                # echo "MYSQL_PASSWORD=admin" >> ~/website-api/.env
-                # echo "MYSQL_DATABASE=website-docker" >> ~/website-api/.env
+                echo "MYSQL_ROOT_USER=root" >> ~/website-api/.env
+                echo "MYSQL_ROOT_PASSWORD=root" >> ~/website-api/.env
+                echo "MYSQL_USER=admin" >> ~/website-api/.env
+                echo "MYSQL_PASSWORD=admin" >> ~/website-api/.env
+                echo "MYSQL_DATABASE=website-docker" >> ~/website-api/.env
               fi
 
-              cd /website-api/
 
               # docker compose up -d
                       
