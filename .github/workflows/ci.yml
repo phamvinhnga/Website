@@ -43,7 +43,7 @@ jobs:
                 mkdir ~/website-api
               fi
 
-              cd /website-api/
+              # cd ~/website-api/
 
               if [[ -f website-api/.env ]]; then
                 sed -i 's/^MYSQL_SERVER=.*/MYSQL_SERVER=website-database/' ~/website-api/.env
