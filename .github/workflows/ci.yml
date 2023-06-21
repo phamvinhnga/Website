@@ -31,6 +31,16 @@ jobs:
         #     tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
         #     file: ./src/Website.Api/Dockerfile
 
+        - name: copy file to server
+            uses: appleboy/scp-action@v0.1.4
+            with:
+              host: ${{ secrets.HOST_IP }}
+              username: ${{ secrets.HOST_USERNAME }}
+              key: ${{ secrets.SSH2 }}
+        +     passphrase: ${{ secrets.HOST_PASSWORD }}
+              source: docker-compose.api.deloy.yml
+              target: ~/website-api
+
         - name: Connect to VPS and run docker compose
           uses: appleboy/ssh-action@v0.1.10
           with:
@@ -42,7 +52,6 @@ jobs:
               if [ ! -d ~/website-api ]; then
                 mkdir ~/website-api
               fi
-
 
               if [[ -f website-api/.env ]]; then
                 sed -i 's/^MYSQL_SERVER=.*/MYSQL_SERVER=${{ secrets.MYSQL_SERVER }}/' ~/website-api/.env
