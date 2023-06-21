@@ -16,30 +16,20 @@ jobs:
     steps:
         - uses: actions/checkout@v3
 
-        # - name: Log in to Docker Hub
-        #   uses: docker/login-action@v2
-        #   with:
-        #     username: ${{ secrets.DOCKER_USERNAME }}
-        #     password: ${{ secrets.DOCKER_PASSWORD }}
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
 
-        # - name: Build and push Docker image
-        #   id: docker_build
-        #   uses: docker/build-push-action@v2
-        #   with:
-        #     context: .
-        #     push: true
-        #     tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
-        #     file: ./src/Website.Api/Dockerfile
-
-        - name: copy file to server
-            uses: appleboy/scp-action@v0.1.4
-            with:
-              host: ${{ secrets.HOST_IP }}
-              username: ${{ secrets.HOST_USERNAME }}
-              key: ${{ secrets.SSH2 }}
-        +     passphrase: ${{ secrets.HOST_PASSWORD }}
-              source: docker-compose.api.deloy.yml
-              target: ~/website-api
+        - name: Build and push Docker image
+          id: docker_build
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            push: true
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
+            file: ./src/Website.Api/Dockerfile
 
         - name: Connect to VPS and run docker compose
           uses: appleboy/ssh-action@v0.1.10
@@ -68,13 +58,10 @@ jobs:
                 echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> website-api/.env
                 echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> website-api/.env
               fi
-
-              scp docker-compose.api.deloy.yml ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_IP }}:~/website-api/
-              # ssh user@your-linux-server-ip 'cd ~/website-api && docker-compose up -d'
             
-              # cd website-api/
+              cd website-api/
 
-              # docker compose up -d
+              docker compose up -d
                       
         - name: Send telegram message on push
           uses: appleboy/telegram-action@master
