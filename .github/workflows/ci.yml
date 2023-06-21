@@ -1,4 +1,4 @@
-name: Build and Push to Docker
+name: Deloy to server
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           with:
             context: .
             push: true
-            tags: ngapham0705/website-api:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
             file: ./src/Website.Api/Dockerfile
 
         - name: Connect to vps and run docker compose
