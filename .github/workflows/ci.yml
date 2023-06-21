@@ -51,6 +51,8 @@ jobs:
                 sed -i 's/^MYSQL_PASSWORD=.*/MYSQL_PASSWORD=admin/' ~/website-api/.env
                 sed -i 's/^MYSQL_DATABASE=.*/MYSQL_DATABASE=website-docker/' ~/website-api/.env
               else
+
+                touch ~/website-api/.env
                 echo "MYSQL_SERVER=website-database" > ~/website-api/.env
                 echo "MYSQL_ROOT_USER=root" >> ~/website-api/.env
                 echo "MYSQL_ROOT_PASSWORD=root" >> ~/website-api/.env
