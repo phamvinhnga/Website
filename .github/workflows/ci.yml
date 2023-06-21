@@ -1,4 +1,4 @@
-name: Build and Push to Docker
+name: Deloy to server
 
 on:
   push:
@@ -15,16 +15,6 @@ jobs:
 
     steps:
         - uses: actions/checkout@v3
-        # - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        #   uses: actions/setup-dotnet@v3
-        #   with:
-        #     dotnet-version: ${{ matrix.dotnet-version }}
-        # - name: Install dependencies
-        #   run: dotnet restore
-        # - name: Build
-        #   run: dotnet build --configuration Release --no-restore
-        # - name: Test
-        #   run: dotnet test --no-restore --verbosity normal
 
         - name: Log in to Docker Hub
           uses: docker/login-action@v2
@@ -38,7 +28,7 @@ jobs:
           with:
             context: .
             push: true
-            tags: ngapham0705/website-api:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
             file: ./src/Website.Api/Dockerfile
 
         - name: executing remote ssh commands using password
