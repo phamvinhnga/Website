@@ -45,6 +45,8 @@ jobs:
 
               cd /website-api/
 
+              echo "Xin chào" > hello.txt
+              
               if [[ -f .env ]]; then
                 sed -i 's/^MYSQL_SERVER=.*/MYSQL_SERVER=website-database/' .env
                 sed -i 's/^MYSQL_ROOT_USER=.*/MYSQL_ROOT_USER=root/' .env
@@ -61,7 +63,7 @@ jobs:
                 echo "MYSQL_DATABASE=website-docker" >> .env
               fi
 
-              docker compose up -d
+              # docker compose up -d
                       
         - name: Send telegram message on push
           uses: appleboy/telegram-action@master
