@@ -41,7 +41,7 @@ jobs:
               cd /website-api/
               docker compose up -d
                       
-        - name: send telegram message on push
+        - name: Send telegram message on push
           uses: appleboy/telegram-action@master
           with:
             to: ${{ secrets.TELEGRAM_TO }}
