@@ -16,19 +16,6 @@ jobs:
     steps:
         - uses: actions/checkout@v3
 
-        - name: send telegram message on push
-          uses: appleboy/telegram-action@master
-          with:
-            to: 1810814173
-            token: 6085324979:AAGqsSjIngtpic5eTjUCJfzcYk6yeY0STdI
-            message: |
-              ${{ github.actor }} created commit:
-              Commit message: ${{ github.event.commits[0].message }}
-              
-              Repository: ${{ github.repository }}
-              
-              See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            
         - name: Log in to Docker Hub
           uses: docker/login-action@v2
           with:
@@ -53,5 +40,18 @@ jobs:
             script: |
               cd /website-api/
               docker compose up -d
+                      
+        - name: send telegram message on push
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+              ${{ github.actor }} created commit:
+              Commit message: ${{ github.event.commits[0].message }}
+              
+              Repository: ${{ github.repository }}
+              
+              Commit: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
               
