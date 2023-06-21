@@ -31,7 +31,7 @@ jobs:
             tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest
             file: ./src/Website.Api/Dockerfile
 
-        - name: Connect to vps and run docker compose
+        - name: Connect to VPS and run docker compose
           uses: appleboy/ssh-action@v0.1.10
           with:
             host: ${{ secrets.HOST_IP }}
