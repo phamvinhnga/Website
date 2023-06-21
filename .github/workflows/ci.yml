@@ -62,7 +62,6 @@ jobs:
                 echo "MYSQL_DATABASE=website-docker" >> ~/website-api/.env
               fi
 
-
               # docker compose up -d
                       
         - name: Send telegram message on push
