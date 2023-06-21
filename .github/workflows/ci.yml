@@ -39,7 +39,7 @@ jobs:
             password: ${{ secrets.HOST_PASSWORD }}
             script: |
 
-              if [ ! -d ~/abc ]; then
+              if [ ! -d ~/website-api ]; then
                 mkdir ~/website-api
               fi
 
@@ -61,7 +61,7 @@ jobs:
                 echo "MYSQL_DATABASE=website-docker" >> .env
               fi
 
-              docker compose up -d
+              # docker compose up -d
                       
         - name: Send telegram message on push
           uses: appleboy/telegram-action@master
