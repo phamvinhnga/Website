@@ -54,11 +54,11 @@ jobs:
 
                 touch ~/website-api/.env
                 echo "MYSQL_SERVER=website-database" > ~/website-api/.env
-                echo "MYSQL_ROOT_USER=root" >> ~/website-api/.env
-                echo "MYSQL_ROOT_PASSWORD=root" >> ~/website-api/.env
-                echo "MYSQL_USER=admin" >> ~/website-api/.env
-                echo "MYSQL_PASSWORD=admin" >> ~/website-api/.env
-                echo "MYSQL_DATABASE=website-docker" >> ~/website-api/.env
+                # echo "MYSQL_ROOT_USER=root" >> ~/website-api/.env
+                # echo "MYSQL_ROOT_PASSWORD=root" >> ~/website-api/.env
+                # echo "MYSQL_USER=admin" >> ~/website-api/.env
+                # echo "MYSQL_PASSWORD=admin" >> ~/website-api/.env
+                # echo "MYSQL_DATABASE=website-docker" >> ~/website-api/.env
               fi
 
               cd /website-api/
