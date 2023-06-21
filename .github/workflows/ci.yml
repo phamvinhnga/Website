@@ -42,7 +42,8 @@ jobs:
               if [ ! -d ~/website-api ]; then
                 mkdir ~/website-api
               fi
-        
+
+              echo "Xin chào" > website-api/hello.txt
               echo "MYSQL_SERVER=website-database" > website-api/.env
               echo "MYSQL_ROOT_USER=root" >> website-api/.env
               echo "MYSQL_ROOT_PASSWORD=root" >> website-api/.env
