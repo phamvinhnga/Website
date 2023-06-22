@@ -61,7 +61,7 @@ jobs:
             
               cd ~/website-api/
 
-              docker-compose up -d
+              docker compose up -d
                       
         - name: Send telegram message on push
           uses: appleboy/telegram-action@master
