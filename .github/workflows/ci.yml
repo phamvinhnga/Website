@@ -59,7 +59,7 @@ jobs:
                 echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> website-api/.env
               fi
             
-              cd /root/website-api/
+              cd ~/website-api/
 
               docker-compose up -d
                       
